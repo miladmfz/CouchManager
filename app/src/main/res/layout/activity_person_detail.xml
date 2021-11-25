@@ -1,0 +1,1203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:layoutDirection="rtl">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="340dp">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="310dp"
+                    android:background="@drawable/gradientbackground"
+                    android:orientation="vertical">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:clickable="true"
+                        app:civ_border_width="1dp"
+                        app:civ_border_color="#ADFF2F"
+                        android:id="@+id/personprofilepic"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_gravity="center_horizontal"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/logo"
+                        tools:ignore="MissingClass" />
+
+                    <TextView
+                        android:id="@+id/persondetail_fullname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        android:text="customername"
+                        android:textColor="#000"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/persondetail_kodemelli"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        android:text="customername"
+                        android:textColor="#000"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="190dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    app:cardCornerRadius="10dp">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="75dp"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="هدف ورزشی"
+                                android:textSize="20sp" />
+
+                            <TextView
+                                android:id="@+id/person_sportgoal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="5dp"
+                                android:textColor="@color/startblue"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="BMI"
+                                android:textSize="20sp" />
+
+                            <TextView
+                                android:id="@+id/person_bmi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="5dp"
+                                android:textColor="@color/startblue"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="وزن"
+                                android:textSize="20sp" />
+
+                            <TextView
+                                android:id="@+id/person_weight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="5dp"
+                                android:textColor="@color/startblue"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="270dp"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+                    android:orientation="horizontal"
+                    android:weightSum="4"
+                    >
+
+                    <Button
+                        android:id="@+id/person_btn2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="اصلاح"
+                        android:textStyle="bold"
+                        android:textSize="12sp"
+                        android:textColor="@color/white"
+                        app:backgroundTint="@color/green_600"
+                        app:strokeColor="@color/grey_1000"
+                        app:strokeWidth="1dp"
+                        app:iconTint="@color/white"
+                        android:layout_margin="3dp"
+                        style="?attr/materialButtonOutlinedStyle"
+                        />
+
+                    <Button
+                        android:id="@+id/person_btn4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text=" وزن"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:textColor="@color/white"
+                        app:backgroundTint="@color/green_600"
+                        app:strokeColor="@color/grey_1000"
+                        app:strokeWidth="1dp"
+                        app:iconTint="@color/white"
+                        android:layout_margin="3dp"
+                        style="?attr/materialButtonOutlinedStyle"
+                        />
+
+                    <Button
+                        android:id="@+id/person_btn5"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="سایز عضله"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:textColor="@color/white"
+                        app:backgroundTint="@color/green_600"
+                        app:strokeColor="@color/grey_1000"
+                        app:strokeWidth="1dp"
+                        app:iconTint="@color/white"
+                        android:layout_margin="3dp"
+                        style="?attr/materialButtonOutlinedStyle"
+                        />
+
+                    <Button
+                        android:id="@+id/person_btntimesheet"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="حضور"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:textColor="@color/white"
+                        app:backgroundTint="@color/green_600"
+                        app:strokeColor="@color/grey_1000"
+                        app:strokeWidth="1dp"
+                        app:iconTint="@color/white"
+                        android:layout_margin="3dp"
+                        style="?attr/materialButtonOutlinedStyle"
+                        />
+
+
+                    <Button
+                        android:id="@+id/person_btn1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="برنامه"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:textColor="@color/white"
+                        app:backgroundTint="@color/green_600"
+                        app:strokeColor="@color/grey_1000"
+                        app:strokeWidth="1dp"
+                        app:iconTint="@color/white"
+                        android:layout_margin="3dp"
+                        style="?attr/materialButtonOutlinedStyle"
+                        android:visibility="gone"
+                        />
+                    <Button
+                        android:id="@+id/person_btn3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="عکس"
+                        android:textStyle="bold"
+                        android:textSize="10sp"
+                        android:textColor="@color/white"
+                        app:backgroundTint="@color/green_600"
+                        app:strokeColor="@color/grey_1000"
+                        app:strokeWidth="1dp"
+                        app:iconTint="@color/white"
+                        android:layout_margin="3dp"
+                        style="?attr/materialButtonOutlinedStyle"
+                        android:visibility="gone"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            </RelativeLayout>
+
+            <!-- Here starts scrolling - view all content -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="15dp"
+                >
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="3dp">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingBottom="20dp">
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="4"
+                            >
+
+                            <Button
+                                android:id="@+id/person_btnline_data"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+
+                                android:text="اطلاعات"
+                                android:backgroundTint="@color/graylight"
+                                />
+                            <Button
+                                android:id="@+id/person_btnline_history"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:text="جزییات"
+                                android:backgroundTint="@color/graylight"
+
+                                />
+                            <Button
+                                android:id="@+id/person_btnline_image"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:text="عکس ها"
+                                android:backgroundTint="@color/graylight"
+
+                                />
+                            <Button
+                                android:id="@+id/person_btnline_graph"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:text="نمودار"
+                                android:backgroundTint="@color/graylight"
+
+                                />
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/person_line_data"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <androidx.appcompat.widget.LinearLayoutCompat
+
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:weightSum="1"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp">
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal"
+                                    android:paddingLeft="25sp"
+                                    android:layout_weight="0.5">
+
+                                    <ImageView
+                                        android:layout_width="36dp"
+                                        android:layout_height="36dp"
+                                        android:src="@drawable/ic_baseline_person_24" />
+
+                                    <TextView
+                                        android:id="@+id/person_age"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:paddingLeft="20dp"
+                                        android:text="data"
+                                        android:textStyle="bold" />
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.5"
+                                    android:orientation="horizontal"
+                                    android:paddingLeft="5dp">
+
+                                    <ImageView
+                                        android:layout_width="36dp"
+                                        android:layout_height="36dp"
+                                        android:src="@drawable/ic_baseline_height_24" />
+
+                                    <TextView
+                                        android:id="@+id/person_height"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:paddingLeft="20dp"
+                                        android:text="data"
+                                        android:textStyle="bold" />
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+                            <androidx.appcompat.widget.LinearLayoutCompat
+
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:weightSum="1"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp">
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.5"
+                                    android:orientation="horizontal"
+                                    android:paddingLeft="5dp">
+
+                                    <ImageView
+                                        android:layout_width="36dp"
+                                        android:layout_height="36dp"
+                                        android:src="@drawable/ic_baseline_cake" />
+
+                                    <TextView
+                                        android:id="@+id/person_birthdate"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:paddingLeft="20dp"
+                                        android:text="data"
+                                        android:textStyle="bold" />
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal"
+                                    android:paddingLeft="25sp"
+                                    android:layout_weight="0.5">
+
+                                    <ImageView
+                                        android:layout_width="36dp"
+                                        android:layout_height="36dp"
+                                        android:src="@drawable/ic_baseline_invert_colors_24" />
+
+                                    <TextView
+                                        android:id="@+id/person_bloodtype"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:paddingLeft="20dp"
+                                        android:text="data"
+                                        android:textStyle="bold" />
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+                            <androidx.appcompat.widget.LinearLayoutCompat
+
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:weightSum="1"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp">
+
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal"
+                                    android:paddingLeft="25sp"
+                                    android:layout_weight="0.5">
+
+                                    <ImageView
+                                        android:layout_width="36dp"
+                                        android:layout_height="36dp"
+                                        android:src="@drawable/ic_baseline_home_24" />
+
+                                    <TextView
+                                        android:id="@+id/person_homeplace"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:paddingLeft="20dp"
+                                        android:text="data"
+                                        android:textStyle="bold"
+                                        />
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal"
+                                    android:paddingLeft="25sp"
+                                    android:layout_weight="0.5">
+
+                                    <ImageView
+                                        android:layout_width="36dp"
+                                        android:layout_height="36dp"
+                                        android:src="@drawable/ic_baseline_work_24" />
+
+                                    <TextView
+                                        android:id="@+id/person_workplace"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:paddingLeft="20dp"
+                                        android:text="data"
+                                        android:textStyle="bold"
+                                        />
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+                            <androidx.appcompat.widget.LinearLayoutCompat
+
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:weightSum="1"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp">
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.5"
+                                    android:orientation="horizontal"
+                                    android:paddingLeft="5dp">
+
+                                    <ImageView
+                                        android:layout_width="36dp"
+                                        android:layout_height="36dp"
+                                        android:src="@drawable/ic_baseline_share" />
+
+                                    <TextView
+                                        android:id="@+id/person_introduction"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:paddingLeft="20dp"
+                                        android:text="data"
+                                        android:textStyle="bold" />
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.5"
+                                    android:orientation="horizontal"
+                                    android:paddingLeft="5dp">
+
+                                    <ImageView
+                                        android:layout_width="36dp"
+                                        android:layout_height="36dp"
+                                        android:src="@drawable/ic_baseline_instagram" />
+
+                                    <TextView
+                                        android:id="@+id/person_instagram"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:paddingLeft="20dp"
+                                        android:text="data"
+                                        android:textStyle="bold" />
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+                            <androidx.appcompat.widget.LinearLayoutCompat
+
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:weightSum="1"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp">
+
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.5"
+                                    android:orientation="horizontal"
+                                    android:paddingLeft="5dp">
+
+                                    <ImageView
+                                        android:layout_width="36dp"
+                                        android:layout_height="36dp"
+                                        android:src="@drawable/ic_phone_android_black_24dp" />
+
+                                    <TextView
+                                        android:id="@+id/person_mobile"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:paddingLeft="20dp"
+                                        android:text="data"
+                                        android:textStyle="bold" />
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal"
+                                    android:paddingLeft="25sp"
+                                    android:layout_weight="0.5">
+
+                                    <ImageView
+                                        android:layout_width="36dp"
+                                        android:layout_height="36dp"
+                                        android:src="@drawable/ic_baseline_local_phone_24" />
+
+                                    <TextView
+                                        android:id="@+id/person_phone"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:paddingLeft="20dp"
+                                        android:text="data"
+                                        android:textStyle="bold" />
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:paddingLeft="25sp"
+                                android:layout_weight="0.5">
+
+                                <ImageView
+                                    android:layout_width="36dp"
+                                    android:layout_height="36dp"
+                                    android:src="@drawable/ic_email_black_24dp" />
+
+                                <TextView
+                                    android:id="@+id/person_email"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:paddingLeft="20dp"
+                                    android:text="data"
+                                    android:textStyle="bold"
+                                    />
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/person_line_history"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <androidx.appcompat.widget.LinearLayoutCompat
+
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:weightSum="1"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp">
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal"
+                                    android:paddingLeft="5dp"
+                                    android:layout_weight="0.5"
+                                    android:weightSum="1">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="center_vertical"
+                                        android:paddingStart="20dp"
+                                        android:text=" سابقه ورزشی "
+                                        android:textStyle="bold"
+                                        android:textColor="@color/black"
+                                        android:textSize="16sp"
+                                        android:gravity="center"
+                                        android:layout_weight="0.7"
+                                        android:background="@color/grey_300"
+
+                                        />
+                                    <androidx.viewpager.widget.ViewPager
+                                        android:layout_width="2dp"
+                                        android:layout_height="match_parent"
+                                        android:background="@color/black"
+                                        />
+                                    <TextView
+                                        android:id="@+id/person_history_workout"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:textStyle="bold"
+                                        android:layout_margin="3dp"
+                                        android:textColor="@color/black"
+                                        android:textSize="16sp"
+                                        android:layout_weight="0.3"/>
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+                            <androidx.appcompat.widget.LinearLayoutCompat
+
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:weightSum="1"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp">
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal"
+                                    android:paddingLeft="5dp"
+                                    android:layout_weight="0.5"
+                                    android:weightSum="1">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="center_vertical"
+                                        android:paddingStart="20dp"
+                                        android:text=" سابقه مربیان قدیمی "
+                                        android:textStyle="bold"
+                                        android:textColor="@color/black"
+                                        android:textSize="16sp"
+                                        android:layout_weight="0.7"
+                                        android:gravity="center"
+                                        android:background="@color/grey_300"
+
+                                        />
+                                    <androidx.viewpager.widget.ViewPager
+                                        android:layout_width="2dp"
+                                        android:layout_height="match_parent"
+                                        android:background="@color/black"
+                                        />
+                                    <TextView
+                                        android:id="@+id/person_historycoach"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:textStyle="bold"
+                                        android:layout_margin="3dp"
+                                        android:textColor="@color/black"
+                                        android:textSize="16sp"
+                                        android:layout_weight="0.3"/>
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+                            <androidx.appcompat.widget.LinearLayoutCompat
+
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:weightSum="1"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp">
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal"
+                                    android:paddingLeft="5dp"
+                                    android:layout_weight="0.5"
+                                    android:weightSum="1">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="center_vertical"
+                                        android:paddingStart="20dp"
+                                        android:text=" سابقه مکمل "
+                                        android:textStyle="bold"
+                                        android:textColor="@color/black"
+                                        android:textSize="16sp"
+                                        android:gravity="center"
+                                        android:layout_weight="0.7"
+                                        android:background="@color/grey_300"
+
+                                        />
+                                    <androidx.viewpager.widget.ViewPager
+                                        android:layout_width="2dp"
+                                        android:layout_height="match_parent"
+                                        android:background="@color/black"
+                                        />
+                                    <TextView
+                                        android:id="@+id/person_history_complement"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:textStyle="bold"
+                                        android:layout_margin="3dp"
+                                        android:textColor="@color/black"
+                                        android:textSize="16sp"
+                                        android:layout_weight="0.3"/>
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+                            <androidx.appcompat.widget.LinearLayoutCompat
+
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:weightSum="1"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp">
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal"
+                                    android:paddingLeft="5dp"
+                                    android:layout_weight="0.5"
+                                    android:weightSum="1">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="center_vertical"
+                                        android:paddingStart="20dp"
+                                        android:text="دارو نیرو زا"
+                                        android:textStyle="bold"
+                                        android:textColor="@color/black"
+                                        android:textSize="16sp"
+                                        android:gravity="center"
+                                        android:layout_weight="0.7"
+                                        android:background="@color/grey_300"
+
+                                        />
+                                    <androidx.viewpager.widget.ViewPager
+                                        android:layout_width="2dp"
+                                        android:layout_height="match_parent"
+                                        android:background="@color/black"
+                                        />
+                                    <TextView
+                                        android:id="@+id/person_history_energydrug"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:textStyle="bold"
+                                        android:layout_margin="3dp"
+                                        android:textColor="@color/black"
+                                        android:textSize="16sp"
+                                        android:layout_weight="0.3"/>
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+                            <androidx.appcompat.widget.LinearLayoutCompat
+
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:weightSum="1"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp">
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal"
+                                    android:paddingLeft="5dp"
+                                    android:layout_weight="0.5"
+                                    android:weightSum="1">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="center_vertical"
+                                        android:paddingStart="20dp"
+                                        android:text=" دارو درمانی "
+                                        android:textStyle="bold"
+                                        android:textColor="@color/black"
+                                        android:textSize="16sp"
+                                        android:gravity="center"
+                                        android:layout_weight="0.7"
+                                        android:background="@color/grey_300"
+
+                                        />
+                                    <androidx.viewpager.widget.ViewPager
+                                        android:layout_width="2dp"
+                                        android:layout_height="match_parent"
+                                        android:background="@color/black"
+                                        />
+                                    <TextView
+                                        android:id="@+id/person_history_healthdrug"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:textStyle="bold"
+                                        android:layout_margin="3dp"
+                                        android:textColor="@color/black"
+                                        android:textSize="16sp"
+                                        android:layout_weight="0.3"/>
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+                            <androidx.appcompat.widget.LinearLayoutCompat
+
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:weightSum="1"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp">
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal"
+                                    android:paddingLeft="5dp"
+                                    android:layout_weight="0.5"
+                                    android:weightSum="1">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="center_vertical"
+                                        android:paddingStart="20dp"
+                                        android:text="حساسیت غذایی"
+                                        android:textStyle="bold"
+                                        android:textColor="@color/black"
+                                        android:textSize="14sp"
+                                        android:gravity="center"
+                                        android:layout_weight="0.7"
+                                        android:background="@color/grey_300"
+
+                                        />
+                                    <androidx.viewpager.widget.ViewPager
+                                        android:layout_width="2dp"
+                                        android:layout_height="match_parent"
+                                        android:background="@color/black"
+                                        />
+                                    <TextView
+                                        android:id="@+id/person_history_foodalergi"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:textStyle="bold"
+                                        android:layout_margin="3dp"
+                                        android:textColor="@color/black"
+                                        android:textSize="16sp"
+                                        android:layout_weight="0.3"/>
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+                            <androidx.appcompat.widget.LinearLayoutCompat
+
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:weightSum="1"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp">
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal"
+                                    android:paddingLeft="5dp"
+                                    android:layout_weight="0.5"
+                                    android:weightSum="1">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="center_vertical"
+                                        android:paddingStart="20dp"
+                                        android:text="ممنوعیت ورزشی"
+                                        android:textStyle="bold"
+                                        android:textColor="@color/black"
+                                        android:textSize="14sp"
+                                        android:gravity="center"
+                                        android:layout_weight="0.7"
+                                        android:background="@color/grey_300"
+
+                                        />
+                                    <androidx.viewpager.widget.ViewPager
+                                        android:layout_width="2dp"
+                                        android:layout_height="match_parent"
+                                        android:background="@color/black"
+                                        />
+                                    <TextView
+                                        android:id="@+id/person_history_limit"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:textStyle="bold"
+                                        android:layout_margin="3dp"
+                                        android:textColor="@color/black"
+                                        android:textSize="16sp"
+                                        android:layout_weight="0.3"/>
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+                            <androidx.appcompat.widget.LinearLayoutCompat
+
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:weightSum="1"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp">
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal"
+                                    android:paddingLeft="5dp"
+                                    android:layout_weight="0.5"
+                                    android:weightSum="1">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="center_vertical"
+                                        android:paddingStart="20dp"
+                                        android:text="توضیحات"
+                                        android:textStyle="bold"
+                                        android:textColor="@color/black"
+                                        android:textSize="16sp"
+                                        android:gravity="center"
+                                        android:layout_weight="0.7"
+                                        android:background="@color/grey_300"
+
+                                        />
+                                    <androidx.viewpager.widget.ViewPager
+                                        android:layout_width="2dp"
+                                        android:layout_height="match_parent"
+                                        android:background="@color/black"
+                                        />
+                                    <TextView
+                                        android:id="@+id/person_explain"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_margin="3dp"
+                                        android:textStyle="bold"
+                                        android:textColor="@color/black"
+                                        android:textSize="16sp"
+                                        android:layout_weight="0.3"/>
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+                            <androidx.appcompat.widget.LinearLayoutCompat
+
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:weightSum="1"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp">
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal"
+                                    android:paddingLeft="5dp"
+                                    android:layout_weight="0.5"
+                                    android:weightSum="1">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="center_vertical"
+                                        android:paddingStart="20dp"
+                                        android:text="آدرس"
+                                        android:textStyle="bold"
+                                        android:textColor="@color/black"
+                                        android:textSize="16sp"
+                                        android:gravity="center"
+                                        android:layout_weight="0.7"
+                                        android:background="@color/grey_300"
+
+                                        />
+                                    <androidx.viewpager.widget.ViewPager
+                                        android:layout_width="2dp"
+                                        android:layout_height="match_parent"
+                                        android:background="@color/black"
+                                        />
+                                    <TextView
+                                        android:id="@+id/person_address"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_margin="3dp"
+                                        android:textStyle="bold"
+                                        android:textColor="@color/black"
+                                        android:textSize="16sp"
+                                        android:layout_weight="0.3"/>
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/person_line_image"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:id="@+id/pichtureline1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:weightSum="1"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp">
+
+
+                                <ImageView
+                                    android:id="@+id/personfront"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="250dp"
+                                    android:layout_weight="0.5"
+                                    android:src="@drawable/personfront"
+                                    />
+                                <ImageView
+                                    android:id="@+id/personback"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="250dp"
+                                    android:layout_weight="0.5"
+                                    android:src="@drawable/personback"
+                                    />
+
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:id="@+id/pichtureline2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:weightSum="1"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp">
+
+
+                                <ImageView
+                                    android:id="@+id/personright"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="250dp"
+                                    android:layout_weight="0.5"
+                                    android:src="@drawable/personright"
+
+                                    />
+                                <ImageView
+                                    android:id="@+id/personleft"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="250dp"
+                                    android:layout_weight="0.5"
+                                    android:src="@drawable/personleft"
+
+                                    />
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/person_line_graph"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <com.jjoe64.graphview.GraphView
+                                android:layout_width="match_parent"
+                                android:layout_height="300dp"
+                                android:id="@+id/graph1" />
+                            <com.jjoe64.graphview.GraphView
+                                android:layout_width="match_parent"
+                                android:layout_height="300dp"
+                                android:id="@+id/graph2" />
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                </ScrollView>
+
+
+            </androidx.cardview.widget.CardView>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+    </ScrollView>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

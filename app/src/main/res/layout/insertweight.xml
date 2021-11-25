@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:id="@+id/insertweight"
+    android:background="@color/grey_40"
+    android:layoutDirection="rtl">
+
+
+    <TextView
+        android:id="@+id/insertweightname"
+        android:background="@drawable/btn_corner_n"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:singleLine="true"
+        android:inputType="number"
+        android:focusable="true"/>
+    <TextView
+        android:id="@+id/insertweightdate"
+        android:background="@drawable/btn_corner_n"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:singleLine="true"
+        android:inputType="number"
+        />
+
+    <EditText
+        android:id="@+id/insertweightvalue"
+        android:background="@drawable/btn_corner_n"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:singleLine="true"
+        android:inputType="number"
+        android:focusable="true"/>
+
+    <Button
+        android:id="@+id/insertweightbtn"
+        android:layout_width="250dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:layout_height="50dp"
+        android:textSize="20sp"
+        android:text="بروز رسانی وزن"
+        android:textColor="#ffffff"
+        app:backgroundTint="@color/green_600"
+        app:strokeColor="@color/grey_1000"
+        app:strokeWidth="1dp"
+        app:iconTint="@color/white"
+        style="?attr/materialButtonOutlinedStyle" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>
