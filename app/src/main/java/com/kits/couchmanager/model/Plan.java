@@ -72,6 +72,10 @@ public class Plan {
     @SerializedName("Image") private String Image;
 
 
+
+
+
+
     public String getTargetPlan() {
         return TargetPlan;
     }
@@ -503,5 +507,70 @@ public class Plan {
 
     public void setImage(String image) {
         Image = image;
+    }
+
+
+    public String getTimeSheetCode() {
+        return TimeSheetCode;
+    }
+
+    public void setTimeSheetCode(String timeSheetCode) {
+        TimeSheetCode = timeSheetCode;
+    }
+
+    public String getTimeSheetDate() {
+        return TimeSheetDate;
+    }
+
+    public void setTimeSheetDate(String timeSheetDate) {
+        TimeSheetDate = timeSheetDate;
+    }
+
+    public String getDailyTime() {
+        return DailyTime;
+    }
+
+    public void setDailyTime(String dailyTime) {
+        DailyTime = dailyTime;
+    }
+
+    public String getState() {
+        return State;
+    }
+
+    public void setState(String state) {
+        State = state;
+    }
+
+    public String getFreeze() {
+        return Freeze;
+    }
+
+    public void setFreeze(String freeze) {
+        Freeze = freeze;
+    }
+
+    public String getDelay() {
+        return Delay;
+    }
+
+    public void setDelay(String delay) {
+        Delay = delay;
+    }
+
+    public String getWorkOutQuality() {
+        return WorkOutQuality;
+    }
+
+    public void setWorkOutQuality(String workOutQuality) {
+        WorkOutQuality = workOutQuality;
+    }
+
+    public String getWarmQuality() {
+        return WarmQuality;
+    }
+
+    public void setWarmQuality(String warmQuality) {
+        WarmQuality = warmQuality;
     }
 }

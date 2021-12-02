@@ -5,15 +5,15 @@ import com.google.gson.annotations.SerializedName;
 public class TimeSheet {
 
 
-    @SerializedName("TimeSheetCode") private String TimeSheetCode;
-    @SerializedName("PlanRef") private String PlanRef;
-    @SerializedName("TimeSheetDate") private String TimeSheetDate;
-    @SerializedName("DailyTime") private String DailyTime;
-    @SerializedName("State") private String State;
-    @SerializedName("Freeze") private String Freeze;
-    @SerializedName("Delay") private String Delay;
-    @SerializedName("WorkOutQuality") private String WorkOutQuality;
-    @SerializedName("WarmQuality") private String WarmQuality;
+    @SerializedName("TimeSheetCode")    private String TimeSheetCode;
+    @SerializedName("PlanRef")          private String PlanRef;
+    @SerializedName("TimeSheetDate")    private String TimeSheetDate;
+    @SerializedName("DailyTime")        private String DailyTime;
+    @SerializedName("State")            private String State;
+    @SerializedName("Freeze")           private String Freeze;
+    @SerializedName("Delay")            private String Delay;
+    @SerializedName("WorkOutQuality")   private String WorkOutQuality;
+    @SerializedName("WarmQuality")      private String WarmQuality;
 
 
     public String getTimeSheetCode() {

@@ -46,6 +46,20 @@ public interface APIInterface {
     );
 
 
+    @POST("index.php")
+    @FormUrlEncoded
+    Call<RetrofitResponse> InsertTimeSheet(@Field("tag") String tag
+            ,@Field("PlanRef") String PlanRef
+            ,@Field("TimeSheetDate") String TimeSheetDate
+            ,@Field("DailyTime") String DailyTime
+            ,@Field("State") String State
+            ,@Field("Freeze") String Freeze
+            ,@Field("Delay") String Delay
+            ,@Field("WorkOutQuality") String WorkOutQuality
+            ,@Field("WarmQuality") String WarmQuality
+
+    );
+
 
     @POST("index.php")
     @FormUrlEncoded
@@ -158,11 +172,15 @@ public interface APIInterface {
             ,@Field("PersonCode") String PersonCode
             ,@Field("planCode") String planCode);
 
+    @POST("index.php")
+    @FormUrlEncoded
+    Call<RetrofitResponse> GetLastPersonPlan(@Field("tag") String tag
+            ,@Field("PersonCode") String PersonCode);
+
 
     @POST("index.php")
     @FormUrlEncoded
     Call<RetrofitResponse> GetTimeSheet(@Field("tag") String tag
-            ,@Field("PersonCode") String PersonCode
             ,@Field("planCode") String planCode);
 
 

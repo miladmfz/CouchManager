@@ -183,14 +183,6 @@ public class CreateplanActivity extends AppCompatActivity implements  DatePicker
 
                 Button btn=findViewById(R.id.create_plan_btn);
                 btn.setOnClickListener(v -> {
-                    Log.e("test",personname);
-
-                    Log.e("test",personcode);
-                    Log.e("test",NumberFunctions.EnglishNumber(tv_startdate.getText().toString()));
-                    Log.e("test",NumberFunctions.EnglishNumber(tv_enddate.getText().toString()));
-                    Log.e("test",spinner_week.getSelectedItemPosition()+"");
-                    Log.e("test",spinner_day.getSelectedItemPosition()+"");
-                    Log.e("test",spinner_adapter_target.get(spinner_target.getSelectedItemPosition()));
 
                     Call<RetrofitResponse> call = apiInterface.NewPlan(
                             "NewPlan",

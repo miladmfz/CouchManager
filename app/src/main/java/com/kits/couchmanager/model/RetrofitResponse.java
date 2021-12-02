@@ -183,19 +183,19 @@ public class RetrofitResponse {
         this.path = path;
     }
 
-    public ArrayList<com.kits.couchmanager.model.TimeSheet> getTimeSheets() {
+    public ArrayList<TimeSheet> getTimeSheets() {
         return TimeSheets;
     }
 
-    public void setTimeSheets(ArrayList<com.kits.couchmanager.model.TimeSheet> timeSheets) {
+    public void setTimeSheets(ArrayList<TimeSheet> timeSheets) {
         TimeSheets = timeSheets;
     }
 
-    public com.kits.couchmanager.model.TimeSheet getTimeSheet() {
+    public TimeSheet getTimeSheet() {
         return TimeSheet;
     }
 
-    public void setTimeSheet(com.kits.couchmanager.model.TimeSheet timeSheet) {
+    public void setTimeSheet(TimeSheet timeSheet) {
         TimeSheet = timeSheet;
     }
 }

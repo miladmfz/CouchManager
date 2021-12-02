@@ -490,36 +490,21 @@ public class PersonDetailActivity extends AppCompatActivity {
         });
 
         btn_timesheet.setOnClickListener(v -> {
-            Call<RetrofitResponse> call = apiInterface.GetPlan("GetPlan","",Personcode,"");
+            Call<RetrofitResponse> call = apiInterface.GetLastPersonPlan("GetLastPersonPlan",Personcode);
             call.enqueue(new Callback<RetrofitResponse>() {
                 @Override
                 public void onResponse(@NotNull Call<RetrofitResponse> call, @NotNull Response<RetrofitResponse> response) {
                     assert response.body() != null;
                     if (response.isSuccessful()) {
                         Plan plan = response.body().getPlans().get(0);
+                        Call<RetrofitResponse> call1 = apiInterface.GetTimeSheet("GetTimeSheet",plan.getPlanCode());
                         if(plan.getActive().equals("1")){
-                            Call<RetrofitResponse> call1 = apiInterface.GetTimeSheet("GetTimeSheet",Personcode,plan.getPlanCode());
-                            call1.enqueue(new Callback<RetrofitResponse>() {
-                                @Override
-                                public void onResponse(@NotNull Call<RetrofitResponse> call, @NotNull Response<RetrofitResponse> response) {
-                                    assert response.body() != null;
-                                    if (response.isSuccessful()) {
-                                        ArrayList<TimeSheet> timeSheets =response.body().getTimeSheets();
-                                        if(timeSheets.size()<(Integer.parseInt(plan.getDayInWeek())*Integer.parseInt(plan.getWeekPeriod()))){
-                                            intent = new Intent(PersonDetailActivity.this, TimeSheetActivity.class);
-                                            intent.putExtra("planCode", plan.getPlanCode());
-                                            intent.putExtra("freeze", "0");
-                                        }else{
-                                            Toast.makeText(PersonDetailActivity.this, "عضویت اتمام یافته است", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                }
-                                @Override
-                                public void onFailure(@NotNull Call<RetrofitResponse> call, @NotNull Throwable t) {
-                                }
-                            });
+                            intent = new Intent(PersonDetailActivity.this, TimeSheetActivity.class);
+                            intent.putExtra("personcode", Personcode);
+                            intent.putExtra("planCode", plan.getPlanCode());
+                            intent.putExtra("freeze", "0");
+                            startActivity(intent);
                         }else {
-                            Call<RetrofitResponse> call1 = apiInterface.GetTimeSheet("GetTimeSheet", Personcode, plan.getPlanCode());
                             call1.enqueue(new Callback<RetrofitResponse>() {
                                 @Override
                                 public void onResponse(@NotNull Call<RetrofitResponse> call, @NotNull Response<RetrofitResponse> response) {
@@ -548,8 +533,10 @@ public class PersonDetailActivity extends AppCompatActivity {
                                                 Toast.makeText(PersonDetailActivity.this, "عضویت اتمام یافته است", Toast.LENGTH_SHORT).show();
                                             } else {
                                                 intent = new Intent(PersonDetailActivity.this, TimeSheetActivity.class);
+                                                intent.putExtra("personcode", Personcode);
                                                 intent.putExtra("planCode", plan.getPlanCode());
                                                 intent.putExtra("freeze", "1");
+                                                startActivity(intent);
                                             }
 
                                         } else {
@@ -568,8 +555,9 @@ public class PersonDetailActivity extends AppCompatActivity {
                                     .setMessage("برنامه جدید ایجاد شود؟")
                                     .setPositiveButton("بله", (dialogInterface, i) -> {
                                         intent = new Intent(PersonDetailActivity.this, CreateplanActivity.class);
-                                        intent.putExtra("personcode", response.body().getPersons().get(0).getPersonCode());
-                                        intent.putExtra("createplan", "1");
+                                        intent.putExtra("personcode", person.getPersonCode());
+                                        intent.putExtra("personname", person.getFirstName()+" "+person.getLastName() );
+                                        startActivity(intent);
                                     })
                                     .setNegativeButton("خیر", (dialogInterface, i) -> {
 
@@ -580,6 +568,19 @@ public class PersonDetailActivity extends AppCompatActivity {
                 }
                 @Override
                 public void onFailure(@NotNull Call<RetrofitResponse> call, @NotNull Throwable t) {
+                    new android.app.AlertDialog.Builder(PersonDetailActivity.this)
+                            .setTitle("عدم وجود برنامه")
+                            .setMessage("برنامه جدید ایجاد شود؟")
+                            .setPositiveButton("بله", (dialogInterface, i) -> {
+                                intent = new Intent(PersonDetailActivity.this, CreateplanActivity.class);
+                                intent.putExtra("personcode", person.getPersonCode());
+                                intent.putExtra("personname", person.getFirstName()+" "+person.getLastName() );
+                                startActivity(intent);
+                            })
+                            .setNegativeButton("خیر", (dialogInterface, i) -> {
+
+                            })
+                            .show();
                 }
             });
 

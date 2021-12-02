@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.TimeSheetActivity"
+    android:layoutDirection="rtl"
     >
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -36,59 +37,200 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_margin="5dp">
+            android:layout_margin="7dp">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_margin="2dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="تاریخ : "
+                    android:textSize="20sp"
+                    android:layout_weight="0.5"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:id="@+id/tsactivity_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:layout_weight="0.5"
+                    android:textColor="@color/black"
+                    android:gravity="center"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_margin="2dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="جلسه  : "
+                    android:textSize="20sp"
+                    android:layout_weight="0.5"
+                    android:textColor="@color/black"
+                    
+                    />
+                <TextView
+                    android:id="@+id/tsactivity_session"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:layout_weight="0.5"
+                    android:gravity="center"
+                    android:textColor="@color/black"/>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_margin="2dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="وععیت حضور :"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:layout_weight="0.5"/>
+                
+                <Spinner
+                    android:id="@+id/tsactivity_spinnerstate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="ساعت ورود :"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:layout_weight="0.5"/>
+                <EditText
+                    android:id="@+id/tsactivity_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="00:00"
+                    android:textSize="20sp"
+                    android:inputType="number"
+                    android:layout_weight="0.5"
+                    android:gravity="center"/>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="تاخیر :"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:layout_weight="0.5"/>
+                <EditText
+                    android:id="@+id/tsactivity_delay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint=""
+                    android:textSize="20sp"
+                    android:inputType="number"
+                    android:layout_weight="0.5"
+                    android:textColor="@color/black"/>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+           
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="تمرکز و کیفیت تمرین :"
+                    android:textSize="20sp"
+                    android:layout_weight="0.5"
+                    android:textColor="@color/black"/>
+                <Spinner
+                    android:id="@+id/tsactivity_spinnerfocus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:textColor="@color/black"/>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            
+           
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="توجه به گرم/سرد کردن :"
+                    android:textSize="20sp"
+                    android:layout_weight="0.5"
+                    android:textColor="@color/black"/>
+                <Spinner
+                    android:id="@+id/tsactivity_spinnerqualitywarm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:textColor="@color/black"/>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+            
+
+            <Button
+                android:id="@+id/tsactivity_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ثبت اطلاعات"
+                android:textColor="@color/white"
+                app:backgroundTint="@color/green_600"
+                app:strokeColor="@color/grey_1000"
+                app:strokeWidth="1dp"
+                app:iconTint="@color/white"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_alignParentBottom="true"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="tarikhte hozorghiyab"
-                android:textSize="20sp"/>
-            <TextView
+                android:text="وضعیت حضور"
+                android:textSize="20sp"
+                android:background="@color/graylight"
+                android:padding="2dp"
+                android:textColor="@color/black"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/tsactivity_rc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="jalase chandom"
-                android:textSize="20sp"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="vaziyate hozor"
-                android:textSize="20sp"/>
-
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="saat"
-                android:textSize="20sp"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="takhir"
-                android:textSize="20sp"/>
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="tamarkoz be jalase"
-                android:textSize="20sp"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="tamarkoz be warmup"
-                android:textSize="20sp"/>
-
-
-
-
-            <TextView
-                android:layout_marginTop="100dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="list hoz0or ghiyabesh"
-                android:textSize="40sp"/>
+                android:layout_margin="2dp"
+                />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.appcompat.widget.LinearLayoutCompat>
