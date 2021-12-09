@@ -140,6 +140,7 @@ public class PersonActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     Log.e("1","1");
                     persons = response.body().getPersons();
+                    Log.e("test1",persons.size()+"");
                     PersonAdapter adapter = new PersonAdapter(persons,createplan,plantype, PersonActivity.this);
                     GridLayoutManager gridLayoutManager = new GridLayoutManager(App.getContext(), 1);
                     rcperson.setLayoutManager(gridLayoutManager);

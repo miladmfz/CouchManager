@@ -48,13 +48,15 @@ import retrofit2.http.Field;
 public class TimeSheetActivity extends AppCompatActivity {
     String Personcode;
     String Plancode;
-    String Freeze;
+    String Freeze="0";
     int state=0;
     String focus="";
     String warm="";
     ArrayList<TimeSheet> timeSheets;
+    ArrayList<Plan> plans;
     Plan plan;
     ArrayAdapter spinner_adapter;
+    RecyclerView recyclerView;
 
     static String strSDCardPathName = Environment.getExternalStorageDirectory().getAbsolutePath() + "/CouchManager" + "/";
 
@@ -84,63 +86,65 @@ public class TimeSheetActivity extends AppCompatActivity {
 
 
     public void init() {
+
+
+        recyclerView =findViewById(R.id.tsactivity_rc);
+
+
+
+
         Call<RetrofitResponse> call = apiInterface.GetLastPersonPlan("GetLastPersonPlan",Personcode);
         call.enqueue(new Callback<RetrofitResponse>() {
             @Override
             public void onResponse(@NotNull Call<RetrofitResponse> call, @NotNull Response<RetrofitResponse> response) {
                 assert response.body() != null;
                 if (response.isSuccessful()) {
-                    plan = response.body().getPlans().get(0);
-
-                    Call<RetrofitResponse> call1 = apiInterface.GetTimeSheet("GetTimeSheet",plan.getPlanCode());
-                    Log.e("test",call1.request().headers().toString());
-
+                    plans = response.body().getPlans();
+                    Call<RetrofitResponse> call1 = apiInterface.GetTimeSheet("GetTimeSheet",plans.get(0).getPlanCode());
                     call1.enqueue(new Callback<RetrofitResponse>() {
                         @Override
                         public void onResponse(@NotNull Call<RetrofitResponse> call, @NotNull Response<RetrofitResponse> response) {
-                            Log.e("test","1");
                             assert response.body() != null;
-                            Log.e("test","2");
-
                             if (response.isSuccessful()) {
-                                Log.e("test","3");
-
-                                timeSheets = response.body().getTimeSheets();
-                                Log.e("test",timeSheets.size()+"");
-                                Log.e("test","4");
-
-                                RecyclerView rc =findViewById(R.id.tsactivity_rc);
+                                timeSheets=response.body().getTimeSheets();
                                 TimeSheetAdapter planAdapter= new TimeSheetAdapter(timeSheets, TimeSheetActivity.this);
                                 GridLayoutManager gridLayoutManager = new GridLayoutManager(App.getContext(), 1);
-                                rc.setLayoutManager(gridLayoutManager);
-                                rc.setAdapter(planAdapter);
-                                rc.setItemAnimator(new FlipInTopXAnimator());
+                                recyclerView.setLayoutManager(gridLayoutManager);
+                                recyclerView.setAdapter(planAdapter);
+                                recyclerView.setItemAnimator(new FlipInTopXAnimator());
                                 int activecount = 0;
                                 int unactivecount = 0;
                                 int frezecount = 0;
+
+                                activecount=timeSheets.size();
+                                int day=Integer.parseInt(plans.get(0).getDayPeriod());
+                                int week=Integer.parseInt(plans.get(0).getWeekPeriod());
+                                int session=0;
+                                session=day*week;
+
+
                                 for (TimeSheet ts : timeSheets) {
-                                    if (!ts.getState().equals("1")) {
-                                        activecount++;
+                                    if (ts.getFreeze().equals("1")) {
+                                        frezecount++;
                                     }
                                 }
-                                if (activecount < (Integer.parseInt(plan.getDayInWeek()) * Integer.parseInt(plan.getWeekPeriod()))) {
-
-                                    for (TimeSheet ts : timeSheets) {
-                                        if (ts.getState().equals("0")) {
-                                            unactivecount++;
-                                        }
-                                        if (ts.getFreeze().equals("1")) {
-                                            frezecount++;
-                                        }
+                                for (TimeSheet ts : timeSheets) {
+                                    if (ts.getState().equals("4")) {
+                                        unactivecount++;
                                     }
-                                    if (unactivecount == frezecount) {
-                                        Toast.makeText(TimeSheetActivity.this, "عضویت اتمام یافته است", Toast.LENGTH_SHORT).show();
-                                    } else {
-                                        createview();
-                                    }
+                                }
 
+
+                                if (activecount < session) {
+                                    createview();
                                 } else {
-                                    Toast.makeText(TimeSheetActivity.this, "عضویت اتمام یافته است", Toast.LENGTH_SHORT).show();
+                                    if(unactivecount>0){
+                                       if(frezecount!=unactivecount) {
+                                           createview();
+                                       }
+                                    }else {
+                                        Toast.makeText(TimeSheetActivity.this, "عضویت اتمام یافته است", Toast.LENGTH_SHORT).show();
+                                    }
                                 }
                             }
                         }
@@ -148,10 +152,8 @@ public class TimeSheetActivity extends AppCompatActivity {
                         @Override
                         public void onFailure(@NotNull Call<RetrofitResponse> call, @NotNull Throwable t) {
                             Log.e("test",t.getMessage());
-                            Log.e("test",t.getLocalizedMessage());
-                            Log.e("test",t.getCause().getMessage());
 
-                            if(plan.getActive().equals("1")){
+                            if(plans.get(0).getActive().equals("1")){
                                 createview();
                             }
                         }
@@ -241,9 +243,8 @@ public class TimeSheetActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 state=position;
                 if (state==4){
-                    Freeze="1";
-                }else {
-                    Freeze="0";
+                    warm="";
+                    focus="";
                 }
             }
         });
@@ -272,7 +273,7 @@ public class TimeSheetActivity extends AppCompatActivity {
             }else{
                 Call<RetrofitResponse> call = apiInterface.InsertTimeSheet(
                         "InsertTimeSheet"
-                        ,plan.getPlanCode()
+                        ,plans.get(0).getPlanCode()
                         ,ed_date.getText().toString()
                         ,ed_time.getText().toString()
                         ,String.valueOf(state)

@@ -51,8 +51,12 @@ import retrofit2.Response;
 
 public class Action {
 
+    PersianCalendar calendar1;
 
-
+    String year;
+    String mount;
+    String day;
+    String date;
 
     private final Context mContext;
     public APIInterface apiInterface = APIClient.getCleint().create(APIInterface.class);
@@ -75,9 +79,27 @@ public class Action {
         TextView tvname = dialog.findViewById(R.id.insertweightname);
         TextView tvdate = dialog.findViewById(R.id.insertweightdate);
 
-        PersianCalendar calendar = new PersianCalendar();
+        calendar1 = new PersianCalendar();
+
+        calendar1.setPersianDate(
+                calendar1.getPersianYear(),
+                calendar1.getPersianMonth()+1,
+                calendar1.getPersianDay()
+        );
+        year="";
+        mount="0";
+        day="0";
+        year=year+calendar1.getPersianYear();
+        mount=mount+calendar1.getPersianMonth();
+        day=day+(calendar1.getPersianDay());
+        date = year+"/"+mount.substring(mount.length()-2)+"/"+day.substring(day.length()-2);
+
+
+
         tvname.setText(name);
-        tvdate.setText(calendar.getPersianShortDate());
+
+
+        tvdate.setText(date);
 
         boxbuy.setOnClickListener(view -> {
 
