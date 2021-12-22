@@ -15,59 +15,50 @@ public class ChartData {
     @SerializedName("Weeks") private String Weeks;
 
 
-    public String getDuration() {
-        return Duration;
-    }
 
     public void setDuration(String duration) {
         Duration = duration;
     }
 
-    public String getWeeks() {
-        return Weeks;
-    }
+
 
     public void setWeeks(String weeks) {
         Weeks = weeks;
     }
 
-    public String getWeightCode() {
-        return WeightCode;
-    }
 
     public void setWeightCode(String weightCode) {
         WeightCode = weightCode;
     }
 
-    public String getPersonRef() {
-        return PersonRef;
-    }
 
     public void setPersonRef(String personRef) {
         PersonRef = personRef;
     }
 
-    public String getWeightValue() {
-        return WeightValue;
-    }
 
     public void setWeightValue(String weightValue) {
         WeightValue = weightValue;
     }
 
-    public String getBMI() {
-        return BMI;
-    }
 
     public void setBMI(String BMI) {
         this.BMI = BMI;
     }
 
-    public String getDate() {
-        return Date;
-    }
+
 
     public void setDate(String date) {
         Date = date;
     }
+
+
+    public String getBMI()         { if(BMI==null)         {BMI="";return BMI;}        else {return BMI;}     }
+    public String getWeightValue() { if(WeightValue==null) {WeightValue="";return WeightValue;}else {return WeightValue;}}
+    public String getPersonRef()   { if(PersonRef==null)   {PersonRef="";return PersonRef;}  else {return PersonRef;}    }
+    public String getWeightCode()  { if(WeightCode==null)  {WeightCode="";return WeightCode;} else {return WeightCode;}    }
+    public String getWeeks()       { if(Weeks==null)       {Weeks="";return Weeks;}      else {return Weeks;}    }
+    public String getDuration()    { if(Duration==null)    {Duration="";return Duration;}   else {return Duration;}    }
+    public String getDate()        { if(Date==null)        {Date="";return Date;}       else {return Date;}    }
+
 }

@@ -75,38 +75,57 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.GoodViewHo
         holder.textView2.setText(NumberFunctions.PerisanNumber(person.getMobileNumber()));
         holder.textView3.setText(NumberFunctions.PerisanNumber(person.getKodeMelli()));
 
-        Call<RetrofitResponse> call2 = apiInterface.GetImage(
-                "getImage",
-                person.getPersonCode(),
-                "",
-                "Person");
-        call2.enqueue(new Callback<RetrofitResponse>() {
-            @Override
-            public void onResponse(Call<RetrofitResponse> call2, Response<RetrofitResponse> response) {
-                if (response.isSuccessful()) {
+        if(!persons.get(position).getImage().equals("")){
+            Glide.with(holder.imageView)
+                    .asBitmap()
+                    .load(Base64.decode(persons.get(position).getImage(), Base64.DEFAULT))
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .fitCenter()
+                    .into(holder.imageView);
+        }else{
+            Glide.with(holder.imageView)
+                    .asBitmap()
+                    .load(R.drawable.logo)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .fitCenter()
+                    .into(holder.imageView);
+            Call<RetrofitResponse> call2 = apiInterface.GetImage(
+                    "getImage",
+                    person.getPersonCode(),
+                    "",
+                    "Person");
+            call2.enqueue(new Callback<RetrofitResponse>() {
+                @Override
+                public void onResponse(Call<RetrofitResponse> call2, Response<RetrofitResponse> response) {
+                    if (response.isSuccessful()) {
 
-                    assert response.body() != null;
-                    try {
-                        if(!response.body().getText().equals("no_photo")) {
-                            Glide.with(holder.imageView)
-                                    .asBitmap()
-                                    .load(Base64.decode(response.body().getText(), Base64.DEFAULT))
-                                    .diskCacheStrategy(DiskCacheStrategy.NONE)
-                                    .fitCenter()
-                                    .into( holder.imageView);
+                        assert response.body() != null;
+                        try {
+                            if(!response.body().getText().equals("no_photo")) {
+                                Glide.with(holder.imageView)
+                                        .asBitmap()
+                                        .load(Base64.decode(response.body().getText(), Base64.DEFAULT))
+                                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                        .fitCenter()
+                                        .into( holder.imageView);
+                                persons.get(position).setImage(response.body().getText());
+                            }
+
+                        } catch (Exception e) {
+
                         }
-                    } catch (Exception e) {
-                        e.getMessage();
                     }
-
-
                 }
-            }
-            @Override
-            public void onFailure(Call<RetrofitResponse> call2, Throwable t) {
-                Log.e("onFailure",""+t.toString());
-            }
-        });
+                @Override
+                public void onFailure(Call<RetrofitResponse> call2, Throwable t) {
+                    Log.e("onFailure",""+t.toString());
+                }
+            });
+
+        }
+
+
+
         holder.rltv.setOnClickListener(v -> {
             if(createplan.equals("0")){
                 intent = new Intent(mContext, PersonDetailActivity.class);

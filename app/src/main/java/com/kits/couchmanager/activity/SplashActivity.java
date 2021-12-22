@@ -103,7 +103,16 @@ public class SplashActivity extends AppCompatActivity {
                     startActivityForResult(intent, 2296);
                 }
             } else {
-                Startapplication();
+                if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                    if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+                        Startapplication();
+                    } else {
+                        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, PERMISSION_CODE);
+                    }
+                } else {
+                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, PERMISSION_CODE);
+                }
+                //Startapplication();
             }
 
         } else {

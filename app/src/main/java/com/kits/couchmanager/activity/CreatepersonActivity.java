@@ -99,6 +99,7 @@ public class CreatepersonActivity extends AppCompatActivity implements  DatePick
         nowcalender = new PersianCalendar();
         ed_BloodType =findViewById(R.id.nperson_spinner_bloodtype);
 
+        arraybloodtype.add("انتخاب");
         arraybloodtype.add("O−");
         arraybloodtype.add("O+");
         arraybloodtype.add("A−");
@@ -147,7 +148,7 @@ public class CreatepersonActivity extends AppCompatActivity implements  DatePick
 
         PersianCalendar calendar1=new PersianCalendar();
         ed_Date.setText(calendar1.getPersianShortDate());
-        tv_BirthDate.setText("انتخاب کنید");
+        tv_BirthDate.setText("انتخاب");
         tv_BirthDate.setOnClickListener(v -> {
             setdate();
 
@@ -240,7 +241,7 @@ public class CreatepersonActivity extends AppCompatActivity implements  DatePick
             edMobileNumber =  NumberFunctions.EnglishNumber(ed_MobileNumber.getText().toString());
             edKodeMelli =  NumberFunctions.EnglishNumber(ed_KodeMelli.getText().toString());
             edHeight =  NumberFunctions.EnglishNumber(ed_Height.getText().toString());
-            edBloodType =  NumberFunctions.EnglishNumber(ed_BloodType.getSelectedItemPosition()+"");
+            edBloodType =  NumberFunctions.EnglishNumber(arraybloodtype.get(ed_BloodType.getSelectedItemPosition()));
             edAge =  NumberFunctions.EnglishNumber(tv_Age.getText().toString());
             edBirthDate = NumberFunctions.EnglishNumber( tv_BirthDate.getText().toString());
             edSportsGoal =  NumberFunctions.EnglishNumber(ed_SportsGoal.getText().toString());

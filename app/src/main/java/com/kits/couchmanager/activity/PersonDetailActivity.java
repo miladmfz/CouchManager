@@ -36,6 +36,7 @@ import com.google.android.material.button.MaterialButton;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
+import com.kits.couchmanager.BuildConfig;
 import com.kits.couchmanager.R;
 import com.kits.couchmanager.adapter.Action;
 import com.kits.couchmanager.adapter.App;
@@ -71,6 +72,8 @@ public class PersonDetailActivity extends AppCompatActivity {
     static String strSDCardPathName = Environment.getExternalStorageDirectory().getAbsolutePath() + "/CouchManager" + "/";
 
     public APIInterface apiInterface = APIClient.getCleint().create(APIInterface.class);
+    ArrayList<String> arraybloodtype=new ArrayList<>() ;
+    CharSequence[] options;
     Person person;
     String Personcode;
     Intent intent;
@@ -113,6 +116,11 @@ public class PersonDetailActivity extends AppCompatActivity {
 
 
     public void init() {
+
+
+        //options = new CharSequence[]{ "Take Photo", "Choose from Gallery","Cancel" };
+        options = new CharSequence[]{"Choose from Gallery", "Cancel"};
+
         Call<RetrofitResponse> call = apiInterface.GetPerson("Getperson","",Personcode);
         call.enqueue(new Callback<RetrofitResponse>() {
             @Override
@@ -152,67 +160,86 @@ public class PersonDetailActivity extends AppCompatActivity {
 
         GraphView graphView = findViewById(R.id.graph1);
         GraphView graphView2 = findViewById(R.id.graph2);
+        float max_weight=0;
+        float min_weight=0;
+        float max_bmi=0;
+        float min_bmi=0;
+        try {
+            max_weight=Float.parseFloat(chartDatas.get(0).getWeightValue());
+        }catch (Exception e){ }
+        try {
+            min_weight=Float.parseFloat(chartDatas.get(0).getWeightValue());
+        }catch (Exception e){ }
+        try {
+            max_bmi=Float.parseFloat(chartDatas.get(0).getBMI());
+        }catch (Exception e){ }
+        try {
+            min_bmi=Float.parseFloat(chartDatas.get(0).getBMI());
+        }catch (Exception e){ }
 
-        float max_weight=Float.parseFloat(chartDatas.get(0).getWeightValue());
-        float min_weight=Float.parseFloat(chartDatas.get(0).getWeightValue());
-        float max_bmi=Float.parseFloat(chartDatas.get(0).getBMI());
-        float min_bmi=Float.parseFloat(chartDatas.get(0).getBMI());
 
-        for (int i = 0; i < chartDatas.size(); i++) {
-            if(Float.parseFloat(chartDatas.get(i).getWeightValue())>max_weight){
-                max_weight=Float.parseFloat(chartDatas.get(i).getWeightValue());
+        if(max_weight>0) {
+            for (int i = 0; i < chartDatas.size(); i++) {
+                if (Float.parseFloat(chartDatas.get(i).getWeightValue()) > max_weight) {
+                    max_weight = Float.parseFloat(chartDatas.get(i).getWeightValue());
+                }
+                if (Float.parseFloat(chartDatas.get(i).getWeightValue()) < min_weight) {
+                    min_weight = Float.parseFloat(chartDatas.get(i).getWeightValue());
+                }
+
             }
-            if(Float.parseFloat(chartDatas.get(i).getWeightValue())<min_weight){
-                min_weight=Float.parseFloat(chartDatas.get(i).getWeightValue());
+            graphView.getViewport().setMinX(Integer.parseInt(chartDatas.get(0).getWeeks()));
+            graphView.getViewport().setMaxX(Integer.parseInt(chartDatas.get(chartDatas.size()-1).getWeeks())+2);
+            graphView.getViewport().setMinY(min_weight-20);
+            graphView.getViewport().setMaxY(max_weight+20);
+            DataPoint[] dataPoints = new DataPoint[chartDatas.size()];
+            for (int i = 0; i < chartDatas.size(); i++) {
+                dataPoints[i] = new DataPoint(
+                        Double.parseDouble(chartDatas.get(i).getWeeks()),
+                        Double.parseDouble(chartDatas.get(i).getWeightValue())
+                ); // not sure but I think the second argument should be of type double
             }
-            if(Float.parseFloat(chartDatas.get(i).getBMI())>max_bmi){
-                max_bmi=Float.parseFloat(chartDatas.get(i).getBMI());
-            }
-            if(Float.parseFloat(chartDatas.get(i).getBMI())<min_bmi){
-                min_bmi=Float.parseFloat(chartDatas.get(i).getBMI());
-            }
+
+            LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dataPoints);
+            graphView.setTitle("نمودار وزن");
+            graphView.getViewport().setYAxisBoundsManual(true);
+            graphView.getViewport().setXAxisBoundsManual(true);
+            graphView.setTitleColor(R.color.teal_200);
+            graphView.setTitleTextSize(80);
+            graphView.addSeries(series);
+
         }
 
-        graphView.getViewport().setMinX(Integer.parseInt(chartDatas.get(0).getWeeks()));
-        graphView.getViewport().setMaxX(Integer.parseInt(chartDatas.get(chartDatas.size()-1).getWeeks())+2);
-        graphView.getViewport().setMinY(min_weight-20);
-        graphView.getViewport().setMaxY(max_weight+20);
-        DataPoint[] dataPoints = new DataPoint[chartDatas.size()];
-        for (int i = 0; i < chartDatas.size(); i++) {
-            dataPoints[i] = new DataPoint(
-                    Double.parseDouble(chartDatas.get(i).getWeeks()),
-                    Double.parseDouble(chartDatas.get(i).getWeightValue())
-            ); // not sure but I think the second argument should be of type double
+        if(max_bmi>0) {
+            for (int i = 0; i < chartDatas.size(); i++) {
+                if (Float.parseFloat(chartDatas.get(i).getBMI()) > max_bmi) {
+                    max_bmi = Float.parseFloat(chartDatas.get(i).getBMI());
+                }
+                if (Float.parseFloat(chartDatas.get(i).getBMI()) < min_bmi) {
+                    min_bmi = Float.parseFloat(chartDatas.get(i).getBMI());
+                }
+            }
+
+            graphView2.getViewport().setMinX(Integer.parseInt(chartDatas.get(0).getWeeks()));
+            graphView2.getViewport().setMaxX(Integer.parseInt(chartDatas.get(chartDatas.size()-1).getWeeks())+2);
+            graphView2.getViewport().setMinY(min_bmi-20);
+            graphView2.getViewport().setMaxY(max_bmi+20);
+            DataPoint[] dataPoints2 = new DataPoint[chartDatas.size()];
+            for (int i = 0; i < chartDatas.size(); i++) {
+                dataPoints2[i] = new DataPoint(
+                        Double.parseDouble(chartDatas.get(i).getWeeks()),
+                        Double.parseDouble(chartDatas.get(i).getBMI())
+                ); // not sure but I think the second argument should be of type double
+            }
+
+            LineGraphSeries<DataPoint> series2 = new LineGraphSeries<>(dataPoints2);
+            graphView2.setTitle("نمودار BMI");
+            graphView2.getViewport().setYAxisBoundsManual(true);
+            graphView2.getViewport().setXAxisBoundsManual(true);
+            graphView2.setTitleColor(R.color.teal_200);
+            graphView2.setTitleTextSize(80);
+            graphView2.addSeries(series2);
         }
-
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dataPoints);
-        graphView.setTitle("نمودار وزن");
-        graphView.getViewport().setYAxisBoundsManual(true);
-        graphView.getViewport().setXAxisBoundsManual(true);
-        graphView.setTitleColor(R.color.teal_200);
-        graphView.setTitleTextSize(80);
-        graphView.addSeries(series);
-
-
-        graphView2.getViewport().setMinX(Integer.parseInt(chartDatas.get(0).getWeeks()));
-        graphView2.getViewport().setMaxX(Integer.parseInt(chartDatas.get(chartDatas.size()-1).getWeeks())+2);
-        graphView2.getViewport().setMinY(min_bmi-20);
-        graphView2.getViewport().setMaxY(max_bmi+20);
-        DataPoint[] dataPoints2 = new DataPoint[chartDatas.size()];
-        for (int i = 0; i < chartDatas.size(); i++) {
-            dataPoints2[i] = new DataPoint(
-                    Double.parseDouble(chartDatas.get(i).getWeeks()),
-                    Double.parseDouble(chartDatas.get(i).getBMI())
-            ); // not sure but I think the second argument should be of type double
-        }
-
-        LineGraphSeries<DataPoint> series2 = new LineGraphSeries<>(dataPoints2);
-        graphView2.setTitle("نمودار BMI");
-        graphView2.getViewport().setYAxisBoundsManual(true);
-        graphView2.getViewport().setXAxisBoundsManual(true);
-        graphView2.setTitleColor(R.color.teal_200);
-        graphView2.setTitleTextSize(80);
-        graphView2.addSeries(series2);
 
 
 
@@ -220,9 +247,18 @@ public class PersonDetailActivity extends AppCompatActivity {
     }
 
 
-    @SuppressLint({"SetTextI18n", "ResourceAsColor"})
+    @SuppressLint({"SetTextI18n", "ResourceAsColor", "QueryPermissionsNeeded"})
     public void Createview() {
 
+        arraybloodtype.add("انتخاب");
+        arraybloodtype.add("O−");
+        arraybloodtype.add("O+");
+        arraybloodtype.add("A−");
+        arraybloodtype.add("A+");
+        arraybloodtype.add("B−");
+        arraybloodtype.add("B+");
+        arraybloodtype.add("AB-");
+        arraybloodtype.add("AB+");
 
         TextView tv_fullname    = findViewById(R.id.persondetail_fullname);
         TextView tv_KodeMelli   = findViewById(R.id.persondetail_kodemelli);
@@ -284,7 +320,7 @@ public class PersonDetailActivity extends AppCompatActivity {
         tv_fullname.setText(NumberFunctions.PerisanNumber(person.getFirstName()+" "+person.getLastName()));
         tv_mobile.setText(NumberFunctions.PerisanNumber(person.getMobileNumber()));
         tv_email.setText(person.getEmail());
-        tv_blood.setText(person.getBloodType());
+        tv_blood.setText(arraybloodtype.get(Integer.parseInt(person.getBloodType())));
         tv_address.setText(person.getAddress());
         tv_explain.setText(person.getExplain());
         tv_weight.setText(NumberFunctions.PerisanNumber(person.getWeightValue()));
@@ -323,7 +359,7 @@ public class PersonDetailActivity extends AppCompatActivity {
 
         CircleimageView.setOnClickListener(v -> {
             ClassName="Person";
-            final CharSequence[] options = { "Take Photo", "Choose from Gallery","Cancel" };
+
 
             AlertDialog.Builder builder = new AlertDialog.Builder(PersonDetailActivity.this);
             builder.setTitle("Choose your profile picture");
@@ -345,7 +381,7 @@ public class PersonDetailActivity extends AppCompatActivity {
 
         iv_personfront.setOnClickListener(v -> {
             ClassName="PersonFront";
-            final CharSequence[] options = { "Take Photo", "Choose from Gallery","Cancel" };
+
 
             AlertDialog.Builder builder = new AlertDialog.Builder(PersonDetailActivity.this);
             builder.setTitle("Choose your profile picture");
@@ -366,7 +402,7 @@ public class PersonDetailActivity extends AppCompatActivity {
         });
         iv_personback.setOnClickListener(v -> {
             ClassName="PersonBack";
-            final CharSequence[] options = { "Take Photo", "Choose from Gallery","Cancel" };
+
 
             AlertDialog.Builder builder = new AlertDialog.Builder(PersonDetailActivity.this);
             builder.setTitle("Choose your profile picture");
@@ -387,7 +423,7 @@ public class PersonDetailActivity extends AppCompatActivity {
         });
         iv_personright.setOnClickListener(v -> {
             ClassName="PersonRight";
-            final CharSequence[] options = { "Take Photo", "Choose from Gallery","Cancel" };
+
 
             AlertDialog.Builder builder = new AlertDialog.Builder(PersonDetailActivity.this);
             builder.setTitle("Choose your profile picture");
@@ -408,7 +444,7 @@ public class PersonDetailActivity extends AppCompatActivity {
         });
         iv_personleft.setOnClickListener(v -> {
             ClassName="PersonLeft";
-            final CharSequence[] options = { "Take Photo", "Choose from Gallery","Cancel" };
+
 
             AlertDialog.Builder builder = new AlertDialog.Builder(PersonDetailActivity.this);
             builder.setTitle("Choose your profile picture");
@@ -460,11 +496,10 @@ public class PersonDetailActivity extends AppCompatActivity {
         });
 
         tv_email.setOnClickListener(v -> {
-            if(!tv_mobile.getText().toString().equals("")){
-                Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
-                emailIntent.setData(Uri.parse("mailto:"+tv_mobile.getText().toString()));
-                startActivity(Intent.createChooser(emailIntent, "Send feedback"));
-                //Toast.makeText(this, "emailll", Toast.LENGTH_SHORT).show();
+            if(!tv_email.getText().toString().equals("")){
+                Intent intent = new Intent(Intent.ACTION_SENDTO);
+                intent.setData(Uri.parse("mailto:"+tv_email.getText().toString())); // only email apps should handle this
+                startActivity(intent);
             }
         });
 
@@ -519,7 +554,9 @@ public class PersonDetailActivity extends AppCompatActivity {
                                                 activecount++;
                                             }
                                         }
-                                        if (activecount < (Integer.parseInt(plan.getDayInWeek()) * Integer.parseInt(plan.getWeekPeriod()))) {
+                                        Log.e("test_",plan.getDayPeriod()+"");
+                                        Log.e("test_",plan.getWeekPeriod()+"");
+                                        if (activecount < (Integer.parseInt(plan.getDayPeriod()) * Integer.parseInt(plan.getWeekPeriod()))) {
 
                                             for (TimeSheet ts : timeSheets) {
                                                 if (ts.getState().equals("0")) {
@@ -704,7 +741,7 @@ public class PersonDetailActivity extends AppCompatActivity {
                 Log.e("intent_exception", ex.getMessage());
             }
             if (photoFile != null) {
-                photoURI = FileProvider.getUriForFile(this, "com.kits.couchmanager.fileprovider", photoFile);
+                photoURI = FileProvider.getUriForFile(this, "com.kits.couchmanager.provider", photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 startActivityForResult(takePictureIntent, 2);
             }

@@ -46,7 +46,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="10dp"
-                        android:text="customername"
+                        android:text=""
                         android:textColor="#000"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -57,7 +57,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="10dp"
-                        android:text="customername"
+                        android:text=""
                         android:textColor="#000"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -363,7 +363,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center_vertical"
                                         android:paddingLeft="20dp"
-                                        android:text="data"
+                                        android:text=" "
                                         android:textStyle="bold" />
                                 </androidx.appcompat.widget.LinearLayoutCompat>
                                 <androidx.appcompat.widget.LinearLayoutCompat
@@ -384,7 +384,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center_vertical"
                                         android:paddingLeft="20dp"
-                                        android:text="data"
+                                        android:text=" "
                                         android:textStyle="bold" />
                                 </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -418,7 +418,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center_vertical"
                                         android:paddingLeft="20dp"
-                                        android:text="data"
+                                        android:text=" "
                                         android:textStyle="bold" />
                                 </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -441,7 +441,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center_vertical"
                                         android:paddingLeft="20dp"
-                                        android:text="data"
+                                        android:text=" "
                                         android:textStyle="bold" />
                                 </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -475,7 +475,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center_vertical"
                                         android:paddingLeft="20dp"
-                                        android:text="data"
+                                        android:text=" "
                                         android:textStyle="bold"
                                         />
                                 </androidx.appcompat.widget.LinearLayoutCompat>
@@ -497,7 +497,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center_vertical"
                                         android:paddingLeft="20dp"
-                                        android:text="data"
+                                        android:text=" "
                                         android:textStyle="bold"
                                         />
                                 </androidx.appcompat.widget.LinearLayoutCompat>
@@ -530,7 +530,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center_vertical"
                                         android:paddingLeft="20dp"
-                                        android:text="data"
+                                        android:text=" "
                                         android:textStyle="bold" />
                                 </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -552,7 +552,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center_vertical"
                                         android:paddingLeft="20dp"
-                                        android:text="data"
+                                        android:text=" "
                                         android:textStyle="bold" />
                                 </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -585,7 +585,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center_vertical"
                                         android:paddingLeft="20dp"
-                                        android:text="data"
+                                        android:text=" "
                                         android:textStyle="bold" />
                                 </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -607,7 +607,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center_vertical"
                                         android:paddingLeft="20dp"
-                                        android:text="data"
+                                        android:text=" "
                                         android:textStyle="bold" />
                                 </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -630,7 +630,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical"
                                     android:paddingLeft="20dp"
-                                    android:text="data"
+                                    android:text=" "
                                     android:textStyle="bold"
                                     />
                             </androidx.appcompat.widget.LinearLayoutCompat>

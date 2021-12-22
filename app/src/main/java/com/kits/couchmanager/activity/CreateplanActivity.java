@@ -58,6 +58,10 @@ public class CreateplanActivity extends AppCompatActivity implements  DatePicker
     Spinner spinner;
 
 
+    String year;
+    String mount;
+    String day;
+    String date;
 
     Intent intent;
 
@@ -67,7 +71,6 @@ public class CreateplanActivity extends AppCompatActivity implements  DatePicker
 
     String personcode;
     String personname;
-    String date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,6 +111,7 @@ public class CreateplanActivity extends AppCompatActivity implements  DatePicker
                 Spinner spinner_week =findViewById(R.id.create_plan_spinner_week);
                 Spinner spinner_day =findViewById(R.id.create_plan_spinner_day);
                 Spinner spinner_target =findViewById(R.id.create_plan_spinner_target);
+
                 tv_startdate.setText(NumberFunctions.PerisanNumber(date));
 
                 spinner_adapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, spinner_adapter_week);
@@ -135,7 +139,18 @@ public class CreateplanActivity extends AppCompatActivity implements  DatePicker
                                 pickcalender.getPersianMonth(),
                                 pickcalender.getPersianDay() +(position*7)
                         );
-                        tv_enddate.setText(NumberFunctions.PerisanNumber(calendar.getPersianShortDate()));
+
+
+
+                        year="";
+                        mount="0";
+                        day="0";
+                        year=year+calendar.getPersianYear();
+                        mount=mount+((calendar.getPersianMonth())+1);
+                        day=day+(calendar.getPersianDay());
+                        date = year+"/"+mount.substring(mount.length()-2)+"/"+day.substring(day.length()-2);
+
+                        tv_enddate.setText(NumberFunctions.PerisanNumber(date));
 
                     }
                     @Override
@@ -176,7 +191,15 @@ public class CreateplanActivity extends AppCompatActivity implements  DatePicker
                             );
                         }
                         Log.e("test",calendar.getPersianShortDate());
-                        tv_enddate.setText(NumberFunctions.PerisanNumber(calendar.getPersianShortDate()));
+                        year="";
+                        mount="0";
+                        day="0";
+                        year=year+calendar.getPersianYear();
+                        mount=mount+(calendar.getPersianMonth()+1);
+                        day=day+(calendar.getPersianDay());
+                        date = year+"/"+mount.substring(mount.length()-2)+"/"+day.substring(day.length()-2);
+
+                        tv_enddate.setText(NumberFunctions.PerisanNumber(date));
                     }
                 });
 
@@ -198,11 +221,18 @@ public class CreateplanActivity extends AppCompatActivity implements  DatePicker
                         public void onResponse(@NotNull Call<RetrofitResponse> call, @NotNull Response<RetrofitResponse> response) {
                             assert response.body() != null;
                             if (response.isSuccessful()) {
-                                Plan plan =response.body().getPlans().get(0);
-                                intent = new Intent(CreateplanActivity.this, CreaterowActivity.class);
-                                intent.putExtra("plancode", plan.getPlanCode());
-                                intent.putExtra("dayperiod", plan.getDayPeriod());
+//                                Plan plan =response.body().getPlans().get(0);
+//                                intent = new Intent(CreateplanActivity.this, CreaterowActivity.class);
+//                                intent.putExtra("plancode", plan.getPlanCode());
+//                                intent.putExtra("dayperiod", plan.getDayPeriod());
+//                                startActivity(intent);
+
+                                intent = new Intent(CreateplanActivity.this, PersonDetailActivity.class);
+                                intent.putExtra("personcode", personcode);
                                 startActivity(intent);
+
+
+
                             }
                         }
                         @Override
@@ -237,7 +267,7 @@ public class CreateplanActivity extends AppCompatActivity implements  DatePicker
         arrayCat.add("برنامه غذایی");
         arrayCat.add("برنامه مکملی");
 
-        spinner_adapter_week.add("انتخاب تعداد هفته");
+        spinner_adapter_week.add("انتخاب هفته");
         spinner_adapter_week.add("۱ یک");
         spinner_adapter_week.add("۲ دو");
         spinner_adapter_week.add("۳ یه");
@@ -249,7 +279,7 @@ public class CreateplanActivity extends AppCompatActivity implements  DatePicker
         spinner_adapter_week.add("۹ نه");
         spinner_adapter_week.add("۱۰ ده");
 
-        spinner_adapter_day.add("انتخاب روز در هفته");
+        spinner_adapter_day.add("انتخاب روز");
         spinner_adapter_day.add("۱ روز در هفته");
         spinner_adapter_day.add("۲ روز در هفته");
         spinner_adapter_day.add("۳ روز در هفته");
@@ -260,7 +290,7 @@ public class CreateplanActivity extends AppCompatActivity implements  DatePicker
 
 
 
-        spinner_adapter_target.add("انتخاب هدف برنامه");
+        spinner_adapter_target.add("انتخاب هدف");
         spinner_adapter_target.add("افزایش توده عضلانی");
         spinner_adapter_target.add("افزایش سایز و وزن");
         spinner_adapter_target.add("کاهش سایز و وزن");
@@ -270,14 +300,25 @@ public class CreateplanActivity extends AppCompatActivity implements  DatePicker
 
 
         pickcalender = new PersianCalendar();
+        year="";
+        mount="0";
+        day="0";
+        year=year+pickcalender.getPersianYear();
+        mount=mount+(pickcalender.getPersianMonth()+1);
+        day=day+(pickcalender.getPersianDay());
+        date = year+"/"+mount.substring(mount.length()-2)+"/"+day.substring(day.length()-2);
 
-        date = pickcalender.getPersianShortDate();
     }
 
 
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
         pickcalender.setPersianDate(year,monthOfYear,dayOfMonth);
-        tv_startdate.setText(NumberFunctions.PerisanNumber(pickcalender.getPersianShortDate()));
+        mount="0";
+        day="0";
+        mount=mount+(monthOfYear+1);
+        day=day+(dayOfMonth);
+        date = year+"/"+mount.substring(mount.length()-2)+"/"+day.substring(day.length()-2);
+        tv_startdate.setText(NumberFunctions.PerisanNumber(date));
     }
 }

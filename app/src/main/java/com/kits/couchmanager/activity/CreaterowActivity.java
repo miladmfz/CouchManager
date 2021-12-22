@@ -218,7 +218,7 @@ public class CreaterowActivity extends AppCompatActivity {
 
     public void callitemname() {
         Data_spinnername.clear();
-        Data_spinnername.add("انتخاب کنید");
+        Data_spinnername.add("انتخاب");
         for (Item item:items){
             Data_spinnername.add(item.getItemName());
         }
@@ -297,7 +297,7 @@ public class CreaterowActivity extends AppCompatActivity {
             case "1":
                 tvplantype.setText("ورزشی");
 
-                Data_spinnername.add("انتخاب کنید");
+                Data_spinnername.add("انتخاب");
                 createlineprogram2.setVisibility(View.GONE);
                 for (Item item:items){
                     Data_spinnerfilter1.add(item.getItemType1());
@@ -308,8 +308,8 @@ public class CreaterowActivity extends AppCompatActivity {
                 Data_spinnerfilter1=new ArrayList<String>(new HashSet<>(Data_spinnerfilter1));
                 Data_spinnerfilter2=new ArrayList<String>(new HashSet<>(Data_spinnerfilter2));
 
-                Data_spinnerfilter1.add(0,"انتخاب کنید");
-                Data_spinnerfilter2.add(0,"انتخاب کنید");
+                Data_spinnerfilter1.add(0,"انتخاب");
+                Data_spinnerfilter2.add(0,"انتخاب");
 
                 break;
             case "2":
@@ -322,7 +322,7 @@ public class CreaterowActivity extends AppCompatActivity {
                     Data_spinnername.add(item.getItemName());
                 }
                 Data_spinnerfilter1=new ArrayList<String>(new HashSet<>(Data_spinnerfilter1));
-                Data_spinnerfilter1.add(0,"انتخاب کنید");
+                Data_spinnerfilter1.add(0,"انتخاب");
                 break;
             case "3":
                 tvplantype.setText("غذایی");
@@ -334,7 +334,7 @@ public class CreaterowActivity extends AppCompatActivity {
                     Data_spinnername.add(item.getItemName());
                 }
                 Data_spinnerfilter1=new ArrayList<String>(new HashSet<>(Data_spinnerfilter1));
-                Data_spinnerfilter1.add(0,"انتخاب کنید");
+                Data_spinnerfilter1.add(0,"انتخاب");
                 break;
         }
 

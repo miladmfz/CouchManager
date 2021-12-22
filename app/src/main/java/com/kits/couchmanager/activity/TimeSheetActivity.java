@@ -57,6 +57,10 @@ public class TimeSheetActivity extends AppCompatActivity {
     Plan plan;
     ArrayAdapter spinner_adapter;
     RecyclerView recyclerView;
+    String year;
+    String mount;
+    String day;
+    String date;
 
     static String strSDCardPathName = Environment.getExternalStorageDirectory().getAbsolutePath() + "/CouchManager" + "/";
 
@@ -179,7 +183,9 @@ public class TimeSheetActivity extends AppCompatActivity {
 
         TextView ed_date  =findViewById(R.id.tsactivity_date);
         EditText ed_delay =findViewById(R.id.tsactivity_delay);
-        TextView ed_time =findViewById(R.id.tsactivity_time);
+        TextView ed_startdate =findViewById(R.id.tsactivity_startdate);
+        TextView ed_enddate =findViewById(R.id.tsactivity_enddate);
+        TextView ed_explain =findViewById(R.id.tsactivity_explain);
 
         Button btn_savedata =findViewById(R.id.tsactivity_btn);
 
@@ -190,26 +196,35 @@ public class TimeSheetActivity extends AppCompatActivity {
         Spinner spinnerfocus=findViewById(R.id.tsactivity_spinnerfocus);
 
 
+        ed_startdate.setText(NumberFunctions.PerisanNumber(plans.get(0).getStartDate()));
+        ed_enddate.setText(NumberFunctions.PerisanNumber(plans.get(0).getEndDate()));
 
 
         PersianCalendar calendar=new PersianCalendar();
 
-        ed_date.setText(calendar.getPersianShortDate());
+
+        year="";
+        mount="0";
+        day="0";
+        year=year+calendar.getPersianYear();
+        mount=mount+(calendar.getPersianMonth()+1);
+        day=day+(calendar.getPersianDay());
+        date = year+"/"+mount.substring(mount.length()-2)+"/"+day.substring(day.length()-2);
+        ed_date.setText(NumberFunctions.PerisanNumber(date));
 
 
-        Data_spinnerstate.add("انتخاب کنید");
+        Data_spinnerstate.add("انتخاب");
         Data_spinnerstate.add("حاضر");
-        Data_spinnerstate.add("تاخیر");
         Data_spinnerstate.add("غیبت");
         Data_spinnerstate.add("فریز");
 
 
-        Data_spinnerfocus.add("انتخاب کنید");
+        Data_spinnerfocus.add("انتخاب");
         Data_spinnerfocus.add("کم");
         Data_spinnerfocus.add("خوب");
         Data_spinnerfocus.add("عالی");
 
-        Data_spinnerwarm.add("انتخاب کنید");
+        Data_spinnerwarm.add("انتخاب");
         Data_spinnerwarm.add("کم");
         Data_spinnerwarm.add("خوب");
         Data_spinnerwarm.add("عالی");
@@ -233,16 +248,20 @@ public class TimeSheetActivity extends AppCompatActivity {
 
         try{
             int count=timeSheets.size()+1;
-            ed_session.setText(String.valueOf(count));
+            ed_session.setText(NumberFunctions.PerisanNumber(String.valueOf(count)));
         }catch (Exception e){
-            ed_session.setText("1");
+            ed_session.setText(NumberFunctions.PerisanNumber("1"));
         }
         spinnerstate.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override  public void onNothingSelected(AdapterView<?> parent) {   }
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 state=position;
-                if (state==4){
+                if (state==3){
+                    warm="";
+                    focus="";
+                }
+                if (state==2){
                     warm="";
                     focus="";
                 }
@@ -268,17 +287,22 @@ public class TimeSheetActivity extends AppCompatActivity {
 
 
         btn_savedata.setOnClickListener(v -> {
+            if(focus.equals("انتخاب"))
+                focus="";
+            if(warm.equals("انتخاب"))
+                warm="";
+
             if(state==0){
                 Toast.makeText(this, "وضعیت را وارد کنید", Toast.LENGTH_SHORT).show();
             }else{
                 Call<RetrofitResponse> call = apiInterface.InsertTimeSheet(
                         "InsertTimeSheet"
                         ,plans.get(0).getPlanCode()
-                        ,ed_date.getText().toString()
-                        ,ed_time.getText().toString()
+                        ,NumberFunctions.EnglishNumber(ed_date.getText().toString())
+                        ,NumberFunctions.EnglishNumber(ed_explain.getText().toString())
                         ,String.valueOf(state)
                         ,Freeze
-                        ,ed_delay.getText().toString()
+                        ,NumberFunctions.EnglishNumber(ed_delay.getText().toString())
                         ,focus
                         ,warm
                 );

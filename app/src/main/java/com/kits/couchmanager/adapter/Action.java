@@ -80,17 +80,11 @@ public class Action {
         TextView tvdate = dialog.findViewById(R.id.insertweightdate);
 
         calendar1 = new PersianCalendar();
-
-        calendar1.setPersianDate(
-                calendar1.getPersianYear(),
-                calendar1.getPersianMonth()+1,
-                calendar1.getPersianDay()
-        );
         year="";
         mount="0";
         day="0";
         year=year+calendar1.getPersianYear();
-        mount=mount+calendar1.getPersianMonth();
+        mount=mount+(calendar1.getPersianMonth()+1);
         day=day+(calendar1.getPersianDay());
         date = year+"/"+mount.substring(mount.length()-2)+"/"+day.substring(day.length()-2);
 

@@ -36,12 +36,17 @@ public class TimeSheetAdapter extends RecyclerView.Adapter<TimeSheetAdapter.Good
     Intent intent;
     TimeSheet timeSheet;
     private final Context mContext;
+    ArrayList<String> Data_spinnerstate =new ArrayList<>() ;
 
 
     public TimeSheetAdapter(ArrayList<TimeSheet> timeSheets, Context context)
     {
         this.mContext=context;
         this.timeSheets = timeSheets;
+        Data_spinnerstate.add("انتخاب");
+        Data_spinnerstate.add("حاضر");
+        Data_spinnerstate.add("غیبت");
+        Data_spinnerstate.add("فریز");
     }
 
     @NonNull
@@ -58,9 +63,10 @@ public class TimeSheetAdapter extends RecyclerView.Adapter<TimeSheetAdapter.Good
         timeSheet=timeSheets.get(position);
 
         holder.textView1.setText(NumberFunctions.PerisanNumber(timeSheet.getTimeSheetDate()));
-        holder.textView2.setText(NumberFunctions.PerisanNumber(timeSheet.getState()));
-        holder.textView3.setText(NumberFunctions.PerisanNumber(timeSheet.getWarmQuality()));
+        holder.textView2.setText(NumberFunctions.PerisanNumber(Data_spinnerstate.get(Integer.parseInt(timeSheet.getState()))));
+        holder.textView3.setText(NumberFunctions.PerisanNumber(timeSheet.getDailyTime()));
         holder.textView4.setText(NumberFunctions.PerisanNumber(timeSheet.getWorkOutQuality()));
+        holder.textView5.setText(NumberFunctions.PerisanNumber((timeSheets.size()-position)+""));
 
 
     }
@@ -80,6 +86,7 @@ public class TimeSheetAdapter extends RecyclerView.Adapter<TimeSheetAdapter.Good
         private final TextView textView2;
         private final TextView textView3;
         private final TextView textView4;
+        private final TextView textView5;
         CardView rltv;
 
         GoodViewHolder(View itemView)
@@ -87,8 +94,9 @@ public class TimeSheetAdapter extends RecyclerView.Adapter<TimeSheetAdapter.Good
             super(itemView);
             textView1 = itemView.findViewById(R.id.tscard_date);
             textView2 = itemView.findViewById(R.id.tscard_state);
-            textView3 = itemView.findViewById(R.id.tscard_warm);
+            textView3 = itemView.findViewById(R.id.tscard_time);
             textView4 = itemView.findViewById(R.id.tscard_focus);
+            textView5 = itemView.findViewById(R.id.tscard_number);
 
 
             rltv =  itemView.findViewById(R.id.tscard);

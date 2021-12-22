@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Dialog;
 import android.content.Intent;
 
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -53,13 +55,13 @@ public class MainActivity extends AppCompatActivity {
         createplan.setVisibility(View.GONE);
         allperson.setOnClickListener(v -> {
 
-//            PersianCalendar calendar= new PersianCalendar();
-//
+            PersianCalendar calendar= new PersianCalendar();
+
 //            //String strdate = calendar.getPersianShortDate();
 //            Call<RetrofitResponse> call =apiInterface.getImagetest(
 //                    "getImagetest"
 //                    , "4_"+"Person"
-//                    , getString(R.string.str)
+//                    , getString(R.string.app_name)
 //                    ,"Person"
 //                    ,""
 //                    ,"4"
@@ -83,6 +85,8 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("plantype", "0");
             intent.putExtra("personcode", "0");
             startActivity(intent);
+
+
         });
 
         workout_planlist.setVisibility(View.GONE);
