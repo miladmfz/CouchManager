@@ -1,6 +1,7 @@
 package com.kits.couchmanager.adapter;
 
 
+import android.app.Activity;
 import android.content.Context;
 
 import android.content.Intent;
@@ -22,12 +23,19 @@ import com.kits.couchmanager.activity.PlanActivity;
 import com.kits.couchmanager.activity.PlanDetailActivity;
 import com.kits.couchmanager.model.NumberFunctions;
 import com.kits.couchmanager.model.Plan;
+import com.kits.couchmanager.model.RetrofitResponse;
 import com.kits.couchmanager.model.TimeSheet;
+import com.kits.couchmanager.webService.APIClient;
+import com.kits.couchmanager.webService.APIInterface;
 
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class TimeSheetAdapter extends RecyclerView.Adapter<TimeSheetAdapter.GoodViewHolder>{
@@ -37,6 +45,7 @@ public class TimeSheetAdapter extends RecyclerView.Adapter<TimeSheetAdapter.Good
     TimeSheet timeSheet;
     private final Context mContext;
     ArrayList<String> Data_spinnerstate =new ArrayList<>() ;
+    public APIInterface apiInterface = APIClient.getCleint().create(APIInterface.class);
 
 
     public TimeSheetAdapter(ArrayList<TimeSheet> timeSheets, Context context)
@@ -62,12 +71,40 @@ public class TimeSheetAdapter extends RecyclerView.Adapter<TimeSheetAdapter.Good
     {
         timeSheet=timeSheets.get(position);
 
-        holder.textView1.setText(NumberFunctions.PerisanNumber(timeSheet.getTimeSheetDate()));
-        holder.textView2.setText(NumberFunctions.PerisanNumber(Data_spinnerstate.get(Integer.parseInt(timeSheet.getState()))));
-        holder.textView3.setText(NumberFunctions.PerisanNumber(timeSheet.getDailyTime()));
-        holder.textView4.setText(NumberFunctions.PerisanNumber(timeSheet.getWorkOutQuality()));
+        holder.textView1.setText(NumberFunctions.PerisanNumber(timeSheets.get(position).getTimeSheetDate()));
+        holder.textView2.setText(NumberFunctions.PerisanNumber(Data_spinnerstate.get(Integer.parseInt(timeSheets.get(position).getState()))));
+        holder.textView3.setText(NumberFunctions.PerisanNumber(timeSheets.get(position).getDailyTime()));
+        holder.textView4.setText(NumberFunctions.PerisanNumber(timeSheets.get(position).getWorkOutQuality()));
         holder.textView5.setText(NumberFunctions.PerisanNumber((timeSheets.size()-position)+""));
 
+        holder.rltv.setOnLongClickListener(v -> {
+            new android.app.AlertDialog.Builder(mContext)
+                    .setTitle("خذف رکورد")
+                    .setMessage("رکورد مورد نظر خذف شود؟")
+                    .setPositiveButton("بله", (dialogInterface, i) -> {
+
+                        Call<RetrofitResponse> call = apiInterface.DeleteTimeSheetState("DeleteTimeSheetState",timeSheets.get(position).getTimeSheetCode());
+                        call.enqueue(new Callback<RetrofitResponse>() {
+                            @Override
+                            public void onResponse(Call<RetrofitResponse> call, Response<RetrofitResponse> response) {
+                                if(response.body().getText().equals("Done")) {
+                                    ((Activity) mContext).finish();
+                                    mContext.startActivity(((Activity) mContext).getIntent());
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<RetrofitResponse> call, Throwable t) {
+
+                            }
+                        });
+
+                    })
+                    .setNegativeButton("خیر", (dialogInterface, i) -> {
+                    })
+                    .show();
+            return false;
+        });
 
     }
 

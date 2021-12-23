@@ -1,6 +1,7 @@
 package com.kits.couchmanager.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -47,6 +48,7 @@ import retrofit2.http.Field;
 
 public class TimeSheetActivity extends AppCompatActivity {
     String Personcode;
+    String PersonName;
     String Plancode;
     String Freeze="0";
     int state=0;
@@ -68,6 +70,8 @@ public class TimeSheetActivity extends AppCompatActivity {
     ArrayList<String> Data_spinnerstate =new ArrayList<>() ;
     ArrayList<String> Data_spinnerfocus =new ArrayList<>() ;
     ArrayList<String> Data_spinnerwarm =new ArrayList<>() ;
+    LinearLayoutCompat ll_insertline;
+    LinearLayoutCompat ll_addline;
 
 
 
@@ -86,6 +90,7 @@ public class TimeSheetActivity extends AppCompatActivity {
         Personcode = data.getString("personcode");
         Freeze = data.getString("freeze");
         Plancode = data.getString("plancode");
+        PersonName = data.getString("plancode");
     }
 
 
@@ -93,6 +98,22 @@ public class TimeSheetActivity extends AppCompatActivity {
 
 
         recyclerView =findViewById(R.id.tsactivity_rc);
+        ll_insertline =findViewById(R.id.tsactivity_insertline);
+        ll_addline =findViewById(R.id.tsactivity_addline);
+
+
+        ll_insertline.setVisibility(View.GONE);
+        ll_addline.setVisibility(View.GONE);
+
+        Button addlinebtn=findViewById(R.id.tsactivity_addlinebtn);
+
+        addlinebtn.setOnClickListener(v -> {
+            Intent intent = new Intent(TimeSheetActivity.this, CreateplanActivity.class);
+            intent.putExtra("personcode", Personcode);
+            intent.putExtra("personname", PersonName);
+            startActivity(intent);
+            finish();
+        });
 
 
 
@@ -116,40 +137,7 @@ public class TimeSheetActivity extends AppCompatActivity {
                                 recyclerView.setLayoutManager(gridLayoutManager);
                                 recyclerView.setAdapter(planAdapter);
                                 recyclerView.setItemAnimator(new FlipInTopXAnimator());
-                                int activecount = 0;
-                                int unactivecount = 0;
-                                int frezecount = 0;
-
-                                activecount=timeSheets.size();
-                                int day=Integer.parseInt(plans.get(0).getDayPeriod());
-                                int week=Integer.parseInt(plans.get(0).getWeekPeriod());
-                                int session=0;
-                                session=day*week;
-
-
-                                for (TimeSheet ts : timeSheets) {
-                                    if (ts.getFreeze().equals("1")) {
-                                        frezecount++;
-                                    }
-                                }
-                                for (TimeSheet ts : timeSheets) {
-                                    if (ts.getState().equals("4")) {
-                                        unactivecount++;
-                                    }
-                                }
-
-
-                                if (activecount < session) {
-                                    createview();
-                                } else {
-                                    if(unactivecount>0){
-                                       if(frezecount!=unactivecount) {
-                                           createview();
-                                       }
-                                    }else {
-                                        Toast.makeText(TimeSheetActivity.this, "عضویت اتمام یافته است", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
+                                doingtimesheet();
                             }
                         }
 
@@ -177,9 +165,79 @@ public class TimeSheetActivity extends AppCompatActivity {
 
     }
 
+    public void doingtimesheet() {
+        Log.e("test","qwe");
+
+        int activecount = 0;
+        int unactivecount = 0;
+        int frezecount = 0;
+
+        activecount=timeSheets.size();
+
+        int day=Integer.parseInt(plans.get(0).getDayPeriod());
+        int week=Integer.parseInt(plans.get(0).getWeekPeriod());
+        int session=0;
+
+        session=day*week;
+
+
+        for (TimeSheet ts : timeSheets) {
+            if (ts.getFreeze().equals("1")) {
+                frezecount++;
+            }
+        }
+        for (TimeSheet ts : timeSheets) {
+            if (ts.getState().equals("3")) {
+                unactivecount++;
+            }
+        }
+
+        if(plans.get(0).getActive().equals("1")){
+
+            if (activecount < session) {
+                createview();
+            } else {
+                if(unactivecount>0){
+                    if(frezecount!=unactivecount) {
+                        Freeze="1";
+                        createview();
+                    }else {
+                        ll_insertline.setVisibility(View.GONE);
+                        ll_addline.setVisibility(View.VISIBLE);
+                        Toast.makeText(TimeSheetActivity.this, "عضویت اتمام یافته است", Toast.LENGTH_SHORT).show();
+                    }
+                }else {
+                    ll_insertline.setVisibility(View.GONE);
+                    ll_addline.setVisibility(View.VISIBLE);
+                    Toast.makeText(TimeSheetActivity.this, "عضویت اتمام یافته است", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }else {
+
+            if(unactivecount>0){
+                if(frezecount!=unactivecount) {
+                    Freeze="1";
+                    createview();
+                }
+            }else {
+                ll_insertline.setVisibility(View.GONE);
+                ll_addline.setVisibility(View.VISIBLE);
+                Log.e("test","enddd");
+
+                Toast.makeText(TimeSheetActivity.this, "عضویت اتمام یافته است", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+
+
+    }
+
+
+
     public void createview() {
 
-
+        ll_insertline.setVisibility(View.VISIBLE);
+        ll_addline.setVisibility(View.GONE);
 
         TextView ed_date  =findViewById(R.id.tsactivity_date);
         EditText ed_delay =findViewById(R.id.tsactivity_delay);
@@ -285,7 +343,6 @@ public class TimeSheetActivity extends AppCompatActivity {
             }
         });
 
-
         btn_savedata.setOnClickListener(v -> {
             if(focus.equals("انتخاب"))
                 focus="";
@@ -313,26 +370,14 @@ public class TimeSheetActivity extends AppCompatActivity {
                     public void onResponse(Call<RetrofitResponse> call, Response<RetrofitResponse> response) {
                         finish();
                     }
-
                     @Override
                     public void onFailure(Call<RetrofitResponse> call, Throwable t) {
 
                         Log.e("test1",t.getMessage());
                     }
                 });
-
-
-
             }
-
-
-
-
-
         });
-
-
-
     }
 
 }

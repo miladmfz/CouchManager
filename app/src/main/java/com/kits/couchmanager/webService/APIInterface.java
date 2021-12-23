@@ -184,6 +184,12 @@ public interface APIInterface {
             ,@Field("planCode") String planCode);
 
 
+    @POST("index.php")
+    @FormUrlEncoded
+    Call<RetrofitResponse> DeleteTimeSheetState(@Field("tag") String tag
+            ,@Field("TimeSheetCode") String TimeSheetCode);
+
+
 
     @POST("index.php")
     @FormUrlEncoded

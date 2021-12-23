@@ -533,74 +533,78 @@ public class PersonDetailActivity extends AppCompatActivity {
                     if (response.isSuccessful()) {
                         Plan plan = response.body().getPlans().get(0);
                         Call<RetrofitResponse> call1 = apiInterface.GetTimeSheet("GetTimeSheet",plan.getPlanCode());
-                        if(plan.getActive().equals("1")){
-                            intent = new Intent(PersonDetailActivity.this, TimeSheetActivity.class);
-                            intent.putExtra("personcode", Personcode);
-                            intent.putExtra("planCode", plan.getPlanCode());
-                            intent.putExtra("freeze", "0");
-                            startActivity(intent);
-                        }else {
-                            call1.enqueue(new Callback<RetrofitResponse>() {
-                                @Override
-                                public void onResponse(@NotNull Call<RetrofitResponse> call, @NotNull Response<RetrofitResponse> response) {
-                                    assert response.body() != null;
-                                    if (response.isSuccessful()) {
-                                        ArrayList<TimeSheet> timeSheets = response.body().getTimeSheets();
-                                        int activecount = 0;
-                                        int unactivecount = 0;
-                                        int frezecount = 0;
-                                        for (TimeSheet ts : timeSheets) {
-                                            if (!ts.getState().equals("1")) {
-                                                activecount++;
-                                            }
-                                        }
-                                        Log.e("test_",plan.getDayPeriod()+"");
-                                        Log.e("test_",plan.getWeekPeriod()+"");
-                                        if (activecount < (Integer.parseInt(plan.getDayPeriod()) * Integer.parseInt(plan.getWeekPeriod()))) {
+                        //if(plan.getActive().equals("1")){
+                        intent = new Intent(PersonDetailActivity.this, TimeSheetActivity.class);
+                        intent.putExtra("personcode", Personcode);
+                        intent.putExtra("planCode", plan.getPlanCode());
+                        intent.putExtra("personname", person.getFirstName()+" "+person.getLastName() );
+                        intent.putExtra("freeze", "0");
+                        startActivity(intent);
+                        //}
+//                        else {
+//                            call1.enqueue(new Callback<RetrofitResponse>() {
+//                                @Override
+//                                public void onResponse(@NotNull Call<RetrofitResponse> call, @NotNull Response<RetrofitResponse> response) {
+//                                    assert response.body() != null;
+//                                    if (response.isSuccessful()) {
+//                                        ArrayList<TimeSheet> timeSheets = response.body().getTimeSheets();
+//                                        int activecount = 0;
+//                                        int unactivecount = 0;
+//                                        int frezecount = 0;
+//                                        for (TimeSheet ts : timeSheets) {
+//                                            if (!ts.getState().equals("1")) {
+//                                                activecount++;
+//                                            }
+//                                        }
+//
+//                                        if (activecount < (Integer.parseInt(plan.getDayPeriod()) * Integer.parseInt(plan.getWeekPeriod()))) {
+//
+//                                            for (TimeSheet ts : timeSheets) {
+//                                                if (ts.getState().equals("0")) {
+//                                                    unactivecount++;
+//                                                }
+//                                                if (ts.getFreeze().equals("1")) {
+//                                                    frezecount++;
+//                                                }
+//                                            }
+//                                            if (unactivecount == frezecount) {
+//                                                Toast.makeText(PersonDetailActivity.this, "عضویت اتمام یافته است", Toast.LENGTH_SHORT).show();
+//                                            } else {
+//                                                intent = new Intent(PersonDetailActivity.this, TimeSheetActivity.class);
+//                                                intent.putExtra("personcode", Personcode);
+//                                                intent.putExtra("planCode", plan.getPlanCode());
+//                                                intent.putExtra("freeze", "1");
+//                                                startActivity(intent);
+//                                            }
+//
+//                                        } else {
+//                                            Toast.makeText(PersonDetailActivity.this, "عضویت اتمام یافته است", Toast.LENGTH_SHORT).show();
+//                                        }
+//                                    }
+//                                }
+//
+//                                @Override
+//                                public void onFailure(@NotNull Call<RetrofitResponse> call, @NotNull Throwable t) {
+//                                }
+//                            });
+//
+//                            new android.app.AlertDialog.Builder(PersonDetailActivity.this)
+//                                    .setTitle("اتمام عضویت")
+//                                    .setMessage("برنامه جدید ایجاد شود؟")
+//                                    .setPositiveButton("بله", (dialogInterface, i) -> {
+//                                        intent = new Intent(PersonDetailActivity.this, CreateplanActivity.class);
+//                                        intent.putExtra("personcode", person.getPersonCode());
+//                                        intent.putExtra("personname", person.getFirstName()+" "+person.getLastName() );
+//                                        startActivity(intent);
+//                                    })
+//                                    .setNegativeButton("خیر", (dialogInterface, i) -> {
+//
+//                                    })
+//                                    .show();
+//                        }
+//
+//
 
-                                            for (TimeSheet ts : timeSheets) {
-                                                if (ts.getState().equals("0")) {
-                                                    unactivecount++;
-                                                }
-                                                if (ts.getFreeze().equals("1")) {
-                                                    frezecount++;
-                                                }
-                                            }
-                                            if (unactivecount == frezecount) {
-                                                Toast.makeText(PersonDetailActivity.this, "عضویت اتمام یافته است", Toast.LENGTH_SHORT).show();
-                                            } else {
-                                                intent = new Intent(PersonDetailActivity.this, TimeSheetActivity.class);
-                                                intent.putExtra("personcode", Personcode);
-                                                intent.putExtra("planCode", plan.getPlanCode());
-                                                intent.putExtra("freeze", "1");
-                                                startActivity(intent);
-                                            }
-
-                                        } else {
-                                            Toast.makeText(PersonDetailActivity.this, "عضویت اتمام یافته است", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                }
-
-                                @Override
-                                public void onFailure(@NotNull Call<RetrofitResponse> call, @NotNull Throwable t) {
-                                }
-                            });
-
-                            new android.app.AlertDialog.Builder(PersonDetailActivity.this)
-                                    .setTitle("اتمام عضویت")
-                                    .setMessage("برنامه جدید ایجاد شود؟")
-                                    .setPositiveButton("بله", (dialogInterface, i) -> {
-                                        intent = new Intent(PersonDetailActivity.this, CreateplanActivity.class);
-                                        intent.putExtra("personcode", person.getPersonCode());
-                                        intent.putExtra("personname", person.getFirstName()+" "+person.getLastName() );
-                                        startActivity(intent);
-                                    })
-                                    .setNegativeButton("خیر", (dialogInterface, i) -> {
-
-                                    })
-                                    .show();
-                        }
                     }
                 }
                 @Override

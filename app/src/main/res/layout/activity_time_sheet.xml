@@ -38,228 +38,256 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_margin="7dp">
-
             <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/tsactivity_insertline"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="1"
-                android:layout_margin="2dp">
-                <TextView
+                android:orientation="vertical">
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="شروع:"
-                    android:textSize="20sp"
-                    android:layout_weight="0.27"
-                    android:textColor="@color/black"
-                    />
-                <TextView
-                    android:id="@+id/tsactivity_startdate"
+                    android:orientation="horizontal"
+                    android:weightSum="1"
+                    android:layout_margin="2dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="شروع:"
+                        android:textSize="20sp"
+                        android:layout_weight="0.27"
+                        android:textColor="@color/black"
+                        />
+                    <TextView
+                        android:id="@+id/tsactivity_startdate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:layout_weight="0.23"
+                        android:textColor="@color/black"
+                        android:gravity="center"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="پایان:"
+                        android:textSize="20sp"
+                        android:layout_weight="0.27"
+                        android:textColor="@color/black"
+                        />
+                    <TextView
+                        android:id="@+id/tsactivity_enddate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:layout_weight="0.23"
+                        android:textColor="@color/black"
+                        android:gravity="center"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:layout_weight="0.23"
-                    android:textColor="@color/black"
-                    android:gravity="center"/>
-                <TextView
+                    android:orientation="horizontal"
+                    android:weightSum="1"
+                    android:layout_margin="2dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="تاریخ امروز: "
+                        android:textSize="20sp"
+                        android:layout_weight="0.6"
+                        android:textColor="@color/black"
+                        />
+                    <TextView
+                        android:id="@+id/tsactivity_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:layout_weight="0.4"
+                        android:textColor="@color/black"
+                        android:gravity="center"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="پایان:"
-                    android:textSize="20sp"
-                    android:layout_weight="0.27"
-                    android:textColor="@color/black"
-                    />
-                <TextView
-                    android:id="@+id/tsactivity_enddate"
+                    android:orientation="horizontal"
+                    android:weightSum="1"
+                    android:layout_margin="2dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="جلسه  : "
+                        android:textSize="20sp"
+                        android:layout_weight="0.6"
+                        android:textColor="@color/black"
+
+                        />
+                    <TextView
+                        android:id="@+id/tsactivity_session"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:layout_weight="0.4"
+                        android:gravity="center"
+                        android:textColor="@color/black"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:layout_weight="0.23"
-                    android:textColor="@color/black"
-                    android:gravity="center"/>
+                    android:orientation="horizontal"
+                    android:weightSum="1"
+                    android:layout_margin="2dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="وضعیت حضور :"
+                        android:textSize="20sp"
+                        android:textColor="@color/black"
+                        android:layout_weight="0.6"/>
+
+                    <Spinner
+                        android:id="@+id/tsactivity_spinnerstate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.4"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="تاخیر :"
+                        android:textSize="20sp"
+                        android:textColor="@color/black"
+                        android:layout_weight="0.6"/>
+                    <EditText
+                        android:id="@+id/tsactivity_delay"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint=""
+                        android:textSize="20sp"
+                        android:inputType="number"
+                        android:layout_weight="0.4"
+                        android:textColor="@color/black"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="3dp"
+                    android:weightSum="1">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="تمرکزتمرین :"
+                        android:textSize="20sp"
+                        android:layout_weight="0.6"
+                        android:textColor="@color/black"/>
+                    <Spinner
+                        android:id="@+id/tsactivity_spinnerfocus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.4"
+                        android:textColor="@color/black"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="1"
+                    android:layout_margin="3dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="گرم/سرد کردن :"
+                        android:textSize="20sp"
+                        android:layout_weight="0.6"
+                        android:textColor="@color/black"/>
+                    <Spinner
+                        android:id="@+id/tsactivity_spinnerqualitywarm"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.4"
+                        android:textColor="@color/black"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="1"
+                    android:layout_marginBottom="5dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="توضیحات :"
+                        android:textSize="20sp"
+                        android:layout_weight="0.6"
+                        android:textColor="@color/black"
+                        android:gravity="center"/>
+                    <EditText
+                        android:id="@+id/tsactivity_explain"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="20sp"
+                        android:layout_weight="0.4"
+                        android:textColor="@color/black"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                <Button
+                    android:id="@+id/tsactivity_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="ثبت اطلاعات"
+                    android:textColor="@color/white"
+                    app:backgroundTint="@color/green_600"
+                    app:strokeColor="@color/grey_1000"
+                    app:strokeWidth="1dp"
+                    app:iconTint="@color/white"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_alignParentBottom="true"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/tsactivity_addline"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="1"
-                android:layout_margin="2dp">
-                <TextView
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/tsactivity_addlinebtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="تاریخ امروز: "
+                    android:text="ثبت برنامه جدید"
+                    android:textColor="@color/white"
+                    app:backgroundTint="@color/amber_900"
+                    app:strokeColor="@color/grey_1000"
                     android:textSize="20sp"
-                    android:layout_weight="0.6"
-                    android:textColor="@color/black"
-                    />
-                <TextView
-                    android:id="@+id/tsactivity_date"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:layout_weight="0.4"
-                    android:textColor="@color/black"
-                    android:gravity="center"/>
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="1"
-                android:layout_margin="2dp">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="جلسه  : "
-                    android:textSize="20sp"
-                    android:layout_weight="0.6"
-                    android:textColor="@color/black"
-                    
-                    />
-                <TextView
-                    android:id="@+id/tsactivity_session"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:layout_weight="0.4"
-                    android:gravity="center"
-                    android:textColor="@color/black"/>
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="1"
-                android:layout_margin="2dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="وضعیت حضور :"
-                    android:textSize="20sp"
-                    android:textColor="@color/black"
-                    android:layout_weight="0.6"/>
-                
-                <Spinner
-                    android:id="@+id/tsactivity_spinnerstate"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.4"/>
+                    app:strokeWidth="1dp"
+                    app:iconTint="@color/white"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_alignParentBottom="true"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="1">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="تاخیر :"
-                    android:textSize="20sp"
-                    android:textColor="@color/black"
-                    android:layout_weight="0.6"/>
-                <EditText
-                    android:id="@+id/tsactivity_delay"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint=""
-                    android:textSize="20sp"
-                    android:inputType="number"
-                    android:layout_weight="0.4"
-                    android:textColor="@color/black"/>
-            </androidx.appcompat.widget.LinearLayoutCompat>
-           
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="3dp"
-                android:weightSum="1">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="تمرکزتمرین :"
-                    android:textSize="20sp"
-                    android:layout_weight="0.6"
-                    android:textColor="@color/black"/>
-                <Spinner
-                    android:id="@+id/tsactivity_spinnerfocus"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.4"
-                    android:textColor="@color/black"/>
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            
-           
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="1"
-                android:layout_margin="3dp">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="گرم/سرد کردن :"
-                    android:textSize="20sp"
-                    android:layout_weight="0.6"
-                    android:textColor="@color/black"/>
-                <Spinner
-                    android:id="@+id/tsactivity_spinnerqualitywarm"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.4"
-                    android:textColor="@color/black"/>
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="1"
-                android:layout_marginBottom="5dp">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="توضیحات :"
-                    android:textSize="20sp"
-                    android:layout_weight="0.6"
-                    android:textColor="@color/black"
-                    android:gravity="center"/>
-                <EditText
-                    android:id="@+id/tsactivity_explain"
-
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textSize="20sp"
-                    android:layout_weight="0.4"
-                    android:textColor="@color/black"/>
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-            <Button
-                android:id="@+id/tsactivity_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="ثبت اطلاعات"
-                android:textColor="@color/white"
-                app:backgroundTint="@color/green_600"
-                app:strokeColor="@color/grey_1000"
-                app:strokeWidth="1dp"
-                app:iconTint="@color/white"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_alignParentBottom="true"/>
 
             <TextView
                 android:layout_width="match_parent"
